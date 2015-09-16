@@ -14,7 +14,8 @@ public class Master {
     
     private ArrayList<Card> deck;
     private ArrayList<Player> players = new ArrayList<Player>();
-    private ArrayList<Card> cardsOnTable;
+    private ArrayList<Card> cardsOnTable; //már játékon kívüli lapok
+    private ArrayList<Card> cardsInPlay; //épp játékban lévő lapok
     private int round; //ki kezd -> round % players.size
     private int maxRoundNumber; // -> deck.size/players.size
     private String trump;
@@ -47,6 +48,9 @@ public class Master {
         return this.players.get(i);
     }
     
+    /*
+    Feltölti a kártyák értékeit
+    */
     public void initDeck(){
         
         String[] types = {"spades", "hearts", "clubs", "diamonds"};
@@ -68,6 +72,10 @@ public class Master {
             }
         }
     }
+    
+    /*
+    Megkeveri a kártyapaklit + kiválasztja az adut!
+    */
     public void shuffleDeck(){
      
         Random rnd = new Random();

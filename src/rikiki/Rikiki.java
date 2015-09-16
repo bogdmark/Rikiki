@@ -11,7 +11,6 @@ public class Rikiki {
      * @param args the command line arguments
      */
     
-    
     public static void main(String[] args) {
         
         PlayerOne player1 = new PlayerOne();
