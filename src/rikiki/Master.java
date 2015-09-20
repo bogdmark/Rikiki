@@ -48,6 +48,9 @@ public class Master {
         return this.players.get(i);
     }
     
+    public ArrayList<Player> getPlayers(){
+        return this.players;
+    }
     /*
     Feltölti a kártyák értékeit
     */

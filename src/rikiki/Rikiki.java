@@ -1,11 +1,15 @@
 
 package rikiki;
 
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+
 /**
  * Példányosítások + GUI
  * @author Márk
  */
-public class Rikiki {
+public class Rikiki{
 
     /**
      * @param args the command line arguments
@@ -13,10 +17,16 @@ public class Rikiki {
     
     public static void main(String[] args) {
         
+        RikikiJFrame frame = new RikikiJFrame();
+        frame.setVisible(true);
+        
         PlayerOne player1 = new PlayerOne();
         Robot player2 = new Robot();
         Robot player3 = new Robot();
         Robot player4 = new Robot();
+        player2.setName("Robot Béla");
+        player3.setName("Ultron");
+        player4.setName("The Machine");
         Master master = new Master();
         master.setPlayers(player1);
         master.setPlayers(player2);
@@ -29,7 +39,45 @@ public class Rikiki {
             System.out.println(master.getCard(i).getType() + master.getCard(i).getValue());
         }*/
         System.out.println(master.getTrump());
+        frame.TrumpPic.setIcon(new ImageIcon(master.getTrump() + "_trump.jpg"));
+        
         master.dealCards();
+        frame.PlayerPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
+        frame.ScorePanel.setLayout(new BoxLayout(frame.ScorePanel, BoxLayout.PAGE_AXIS));
+        frame.TablePanel.setLayout(new FlowLayout(FlowLayout.LEADING));
+        
+        DrawPlayer playerone = new DrawPlayer();
+            playerone.PlyarPic.setIcon(new ImageIcon("PlayerOne" + ".jpg"));
+            playerone.PlayerLabel.setText(master.getPlayer(0).getName() + ":");
+            
+            frame.ScorePanel.add(playerone);
+        
+        
+        for(int p = 1; p < master.getPlayers().size(); p++){
+            DrawPlayer player = new DrawPlayer();
+            player.PlyarPic.setIcon(new ImageIcon("Robot" + ".jpg"));
+            player.PlayerLabel.setText(master.getPlayer(p).getName() + ":");
+            frame.ScorePanel.add(player);
+        }
+        
+        
+        for(int c = 0; c < master.getPlayer(0).getCards().size(); c++){
+            DrawCard card = new DrawCard();
+            card.TypeLabel.setIcon(new ImageIcon(master.getPlayer(0).getCard(c).getType() + ".jpg"));
+            card.ValueLabel.setText(master.getPlayer(0).getCard(c).getValue());
+            frame.PlayerPanel.add(card);
+        }
+        
+        //Csak próba!!!
+        for(int c = 0; c < 3; c++){
+            DrawCard card = new DrawCard();
+            card.TypeLabel.setIcon(new ImageIcon(master.getPlayer(1).getCard(c).getType() + ".jpg"));
+            card.ValueLabel.setText(master.getPlayer(1).getCard(c).getValue());
+            frame.TablePanel.add(card);
+        }
+        
+        frame.revalidate();
+        
         for(int i = 0; i<4; i++){
             System.out.println(i + ". Player:");
             for(int j = 0; j < master.getPlayer(i).getCards().size(); j++){
