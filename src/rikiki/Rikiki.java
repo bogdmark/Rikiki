@@ -2,6 +2,9 @@
 package rikiki;
 
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 
@@ -14,6 +17,8 @@ public class Rikiki{
     /**
      * @param args the command line arguments
      */
+    
+    
     
     public static void main(String[] args) {
         
@@ -65,6 +70,37 @@ public class Rikiki{
             DrawCard card = new DrawCard();
             card.TypeLabel.setIcon(new ImageIcon(master.getPlayer(0).getCard(c).getType() + ".jpg"));
             card.ValueLabel.setText(master.getPlayer(0).getCard(c).getValue());
+            MouseListener mouselistener = new MouseListener() {
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if(e.getClickCount()==2){
+                        frame.TablePanel.add((DrawCard)e.getSource());
+                        frame.revalidate();
+                        frame.repaint();
+                    }
+                }
+                @Override
+                public void mousePressed(MouseEvent e) {
+                  
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                   
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                   
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                  
+                }
+            };
+            card.addMouseListener(mouselistener);
             frame.PlayerPanel.add(card);
         }
         
@@ -86,4 +122,5 @@ public class Rikiki{
             }
         }
     }   
+
 }
