@@ -17,22 +17,19 @@ public class Rikiki{
     /**
      * @param args the command line arguments
      */
-    
-    
-    
-    public static void main(String[] args) {
+    PlayerOne player1 = new PlayerOne();
+    Robot player2 = new Robot();
+    Robot player3 = new Robot();
+    Robot player4 = new Robot();
+    Master master = new Master();
+    RikikiJFrame frame = new RikikiJFrame();
         
-        RikikiJFrame frame = new RikikiJFrame();
-        frame.setVisible(true);
+    public void init(){
         
-        PlayerOne player1 = new PlayerOne();
-        Robot player2 = new Robot();
-        Robot player3 = new Robot();
-        Robot player4 = new Robot();
-        player2.setName("Robot Béla");
+        this.player2.setName("Robot Béla");
         player3.setName("Ultron");
         player4.setName("The Machine");
-        Master master = new Master();
+        frame.setVisible(true);
         master.setPlayers(player1);
         master.setPlayers(player2);
         master.setPlayers(player3);
@@ -40,13 +37,14 @@ public class Rikiki{
         master.setRound(10);
         master.initDeck();
         master.shuffleDeck();
-        /*for(int i=0; i<master.getDeck().size(); i++){
-            System.out.println(master.getCard(i).getType() + master.getCard(i).getValue());
-        }*/
+        master.dealCards();
+    }
+    
+    public void draw(){
         System.out.println(master.getTrump());
         frame.TrumpPic.setIcon(new ImageIcon(master.getTrump() + "_trump.jpg"));
         
-        master.dealCards();
+        
         frame.PlayerPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
         frame.ScorePanel.setLayout(new BoxLayout(frame.ScorePanel, BoxLayout.PAGE_AXIS));
         frame.TablePanel.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -121,6 +119,16 @@ public class Rikiki{
                         + master.getPlayer(i).getCard(j).geAllTimeRank());
             }
         }
+    }
+    
+    
+    
+    public static void main(String[] args) {
+        
+        Rikiki rikiki = new Rikiki();
+        rikiki.init();
+        rikiki.draw();
+        
     }   
 
 }

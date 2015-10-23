@@ -107,4 +107,52 @@ public class Master {
             }
         }
     }
+    public void getEstimates(){
+        //for ciklussal begyűjteni a játkosoktól
+    }
+    
+    public boolean checkCard(Card c){
+        return true;
+    }
+    
+    public void round(int i){
+        //for ciklussal végigmenni a játékosokon, figyelni kell, hogy ki a kezdő játékos + a sorrendre
+            // meghívja a játékosok pick metódusát
+            // ellenőrző metódus, hogy a játékosok jót dobtak-e
+            Card c = new Card("A", "spades", 10);
+            boolean check = this.checkCard(c);
+            
+    }
+    
+    public void getWinner(){
+        //az asztalon lévő kártyák közül kiválasztja a nyertest, és beazonosítja a hozzá tartozó játékost
+        //majd növeli annak a nyeréseinek számát -> játékosok hits változója
+    }
+    
+    public void sum(){
+        // round-ok végén összeveti a becsléseket és a nyeréseket, és ezalapján kiszámolja a kapott pontszámot
+    }
+    
+    public void getFinalWinner(){
+        
+    }
+    
+    
+    public void game(){
+        //for ciklus -> i=1 - körök számáig
+            this.shuffleDeck();
+            //round változóba belerakja, hogy hány kör lesz, ez alapján a kártyák kiosztás
+            this.dealCards();
+            //becslések begyűjtése
+            this.getEstimates();
+            //for ciklussal végigmenni a meneteken
+            for(int i = 1; i<=this.maxRoundNumber; i++){
+                this.round(i);
+                this.getWinner();    
+            }
+            this.sum();
+            
+        // for ciklus után -> nyertes kihirdetése
+        this.getFinalWinner();
+    }
 }
