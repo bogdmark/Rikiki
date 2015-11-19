@@ -9,11 +9,17 @@ import java.util.ArrayList;
  */
 public class Player {
     
-    private String name;
-    private ArrayList<Card> cards;
-    private int estimate;
-    private int score;
-    private int hits;
+    public String name;
+    public ArrayList<Card> cards;
+    public int estimate;
+    public int score;
+    public int hits;
+    
+    public Player(String name){
+        this.cards = new ArrayList<>();
+        this.score = 0;
+        this.name = name;
+    }
     
     public Player(){
         this.cards = new ArrayList<>();

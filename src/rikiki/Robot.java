@@ -7,6 +7,9 @@ package rikiki;
  */
 public class Robot extends Player{
     
+    public Robot(String name){
+        this.name = name;
+    }
     public Card pick(){
        return new Card("A", "1", 10);
     }

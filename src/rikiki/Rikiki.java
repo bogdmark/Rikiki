@@ -18,23 +18,21 @@ public class Rikiki{
      * @param args the command line arguments
      */
     PlayerOne player1 = new PlayerOne();
-    Robot player2 = new Robot();
-    Robot player3 = new Robot();
-    Robot player4 = new Robot();
     Master master = new Master();
     RikikiJFrame frame = new RikikiJFrame();
+    
+    public Rikiki(){
+        frame.setVisible(true);
+    }
         
     public void init(){
         
-        this.player2.setName("Robot Béla");
-        player3.setName("Ultron");
-        player4.setName("The Machine");
-        frame.setVisible(true);
         master.setPlayers(player1);
-        master.setPlayers(player2);
-        master.setPlayers(player3);
-        master.setPlayers(player4);
-        master.setRound(10);
+        for(Integer i = 0; i < Integer.parseInt(this.frame.choice); i++){
+            this.master.setPlayers(new Robot("Robot " + i));
+        }
+        
+        master.setRound(8);
         master.initDeck();
         master.shuffleDeck();
         master.dealCards();
@@ -112,7 +110,7 @@ public class Rikiki{
         
         frame.revalidate();
         
-        for(int i = 0; i<4; i++){
+        for(int i = 0; i<3; i++){
             System.out.println(i + ". Player:");
             for(int j = 0; j < master.getPlayer(i).getCards().size(); j++){
                 System.out.println(master.getPlayer(i).getCard(j).getType() + master.getPlayer(i).getCard(j).getValue() + " " 
@@ -126,8 +124,16 @@ public class Rikiki{
     public static void main(String[] args) {
         
         Rikiki rikiki = new Rikiki();
-        rikiki.init();
-        rikiki.draw();
+        int cntr = 0;
+        System.out.println(rikiki.frame.exit);
+        while(!Thread.interrupted() && !rikiki.frame.exit){
+            if(rikiki.frame.start && cntr < 1){
+                rikiki.init();
+                rikiki.draw();
+                cntr++;
+            }
+      
+        }
         
     }   
 

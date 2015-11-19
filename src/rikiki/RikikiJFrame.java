@@ -10,8 +10,15 @@ public class RikikiJFrame extends javax.swing.JFrame {
     /**
      * Creates new form RikikiJFrame
      */
+    public String choice;
+    public boolean start;
+    public boolean exit;
+    
     public RikikiJFrame() {
         initComponents();
+        this.choice = "";
+        this.start = false;
+        this.exit = false;
     }
 
     /**
@@ -172,6 +179,11 @@ public class RikikiJFrame extends javax.swing.JFrame {
         jMenu1.add(Start);
 
         Exit.setText("Exit");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
+            }
+        });
         jMenu1.add(Exit);
 
         jMenuBar1.add(jMenu1);
@@ -197,15 +209,22 @@ public class RikikiJFrame extends javax.swing.JFrame {
 
     private void StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartActionPerformed
         // TODO add your handling code here:
-        String[] robotCntr = {"2", "3", "4", "5", "6", "7"};
-        String choice = (String) JOptionPane.showInputDialog(this, 
+        String[] robotCntr = {"2", "3", "4", "5"};
+        this.choice = (String) JOptionPane.showInputDialog(this, 
                         "How many robots do you want to play against?",
                         "Number",
                         JOptionPane.QUESTION_MESSAGE, 
                         null, 
                         robotCntr, 
                         robotCntr[0]);
+        
+        this.start = true;
+        
     }//GEN-LAST:event_StartActionPerformed
+
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        this.exit = true;            // TODO add your handling code here:
+    }//GEN-LAST:event_ExitActionPerformed
 
     /**
      * @param args the command line arguments
