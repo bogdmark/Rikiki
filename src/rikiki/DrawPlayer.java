@@ -26,6 +26,7 @@ public class DrawPlayer extends javax.swing.JPanel {
         PlyarPic = new javax.swing.JLabel();
         PlayerLabel = new javax.swing.JLabel();
         ScoreLabel = new javax.swing.JLabel();
+        EstimateLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(34, 177, 76));
         setToolTipText("");
@@ -37,7 +38,12 @@ public class DrawPlayer extends javax.swing.JPanel {
         PlayerLabel.setText("Player name:");
 
         ScoreLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ScoreLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ScoreLabel.setText("0");
+
+        EstimateLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        EstimateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        EstimateLabel.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -46,22 +52,27 @@ public class DrawPlayer extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PlyarPic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PlayerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PlayerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(ScoreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ScoreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                .addComponent(EstimateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PlyarPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(PlayerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(EstimateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ScoreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel EstimateLabel;
     public javax.swing.JLabel PlayerLabel;
     public javax.swing.JLabel PlyarPic;
-    private javax.swing.JLabel ScoreLabel;
+    public javax.swing.JLabel ScoreLabel;
     // End of variables declaration//GEN-END:variables
 }

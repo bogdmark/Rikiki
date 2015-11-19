@@ -86,7 +86,7 @@ public class RikikiJFrame extends javax.swing.JFrame {
                 .addComponent(trumpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TrumpPic, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(362, Short.MAX_VALUE))
+                .addContainerGap(372, Short.MAX_VALUE))
         );
         TopPanelLayout.setVerticalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,6 +101,8 @@ public class RikikiJFrame extends javax.swing.JFrame {
         );
 
         TablePanel.setBackground(new java.awt.Color(34, 177, 76));
+        TablePanel.setMinimumSize(new java.awt.Dimension(827, 100));
+        TablePanel.setPreferredSize(new java.awt.Dimension(827, 175));
 
         javax.swing.GroupLayout TablePanelLayout = new javax.swing.GroupLayout(TablePanel);
         TablePanel.setLayout(TablePanelLayout);

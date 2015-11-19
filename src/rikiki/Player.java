@@ -2,6 +2,7 @@
 package rikiki;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  * Közös ősosztály a játékosnak és a robotoknak
@@ -11,7 +12,7 @@ public class Player {
     
     public String name;
     public ArrayList<Card> cards;
-    public int estimate;
+    public Integer estimate;
     public int score;
     public int hits;
     
@@ -24,6 +25,7 @@ public class Player {
     public Player(){
         this.cards = new ArrayList<>();
         this.score = 0;
+        this.estimate = 0;
         this.name = "player";
     }
     
@@ -47,12 +49,13 @@ public class Player {
         return this.cards;
     }
     
-    public int getEstimate(){
-        return this.estimate;
+    public Integer getEstimate(){
+      
+       return this.estimate;
     }
     
-    public void setEstimate(int est){
-        this.estimate = est;
+    public void setEstimate(){
+        this.estimate = 0;
     }
     
     public int getScore(){

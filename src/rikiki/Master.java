@@ -16,9 +16,13 @@ public class Master {
     private ArrayList<Player> players = new ArrayList<Player>();
     private ArrayList<Card> cardsOnTable; //már játékon kívüli lapok
     private ArrayList<Card> cardsInPlay; //épp játékban lévő lapok
-    private int round; //ki kezd -> round % players.size
-    private int maxRoundNumber; // -> deck.size/players.size
+    public int round_index;
+    public int round_number;
     private String trump;
+    
+    public Master(){
+        round_index = 2;
+    }
     
     public void setDeck(ArrayList<Card> deck){
         this.deck = deck;
@@ -28,8 +32,8 @@ public class Master {
         return this.deck;
     }
     
-    public void setRound(int round){
-        this.round = round;
+    public void setRoundNumber(int round){
+        this.round_number = round;
     }
     
     public Card getCard(int i){
@@ -100,15 +104,18 @@ public class Master {
     public void dealCards(){
         
         int nextCard = 0;
-        for(int i = 1; i<=this.round; i++){
+        for(int i = 1; i<=this.round_index; i++){
             for(int j=0; j<this.players.size(); j++){
                 this.players.get(j).setCard(this.deck.get(nextCard));
                 nextCard++;
             }
         }
     }
-    public void getEstimates(){
+    public void setEstimates(){
         //for ciklussal begyűjteni a játkosoktól
+        for(int i = 0; i < this.players.size(); i++){
+            players.get(i).setEstimate();
+        }
     }
     
     public boolean checkCard(Card c){
@@ -137,22 +144,5 @@ public class Master {
         
     }
     
-    
-    public void game(){
-        //for ciklus -> i=1 - körök számáig
-            this.shuffleDeck();
-            //round változóba belerakja, hogy hány kör lesz, ez alapján a kártyák kiosztás
-            this.dealCards();
-            //becslések begyűjtése
-            this.getEstimates();
-            //for ciklussal végigmenni a meneteken
-            for(int i = 1; i<=this.maxRoundNumber; i++){
-                this.round(i);
-                this.getWinner();    
-            }
-            this.sum();
-            
-        // for ciklus után -> nyertes kihirdetése
-        this.getFinalWinner();
-    }
+   
 }
