@@ -225,7 +225,8 @@ public class RikikiJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_StartActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
-        this.exit = true;            // TODO add your handling code here:
+        this.exit = true;
+        System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
     /**
