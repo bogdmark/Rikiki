@@ -21,7 +21,7 @@ public class Robot extends Player{
     
     public void setEstimate(){
         this.estimate = 0;
-        if(type == 0){
+        if(type == -1){
            for (int i = 0; i < cards.size(); i++){
                if (cards.get(i).getValue() == "A" || cards.get(i).getRoundRank() == 13 || cards.get(i).getRoundRank() == 12)
                    this.estimate++;
