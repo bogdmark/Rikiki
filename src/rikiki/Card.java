@@ -27,7 +27,7 @@ public class Card {
         return this.value;
     }
     
-    public int geAllTimeRank(){
+    public int getAllTimeRank(){
         return this.allTimeRank;
     }
     
@@ -40,7 +40,7 @@ public class Card {
     }
     
     public void setRoundRank(int rank){
-        this.roundRank = rank;
+        this.roundRank = getAllTimeRank() + rank;
     }
     
     public void setCurrentRank(int rank){

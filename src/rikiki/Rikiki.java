@@ -31,7 +31,7 @@ public class Rikiki{
         
         master.setPlayers(player1);
         for(Integer i = 0; i < Integer.parseInt(this.frame.choice); i++){
-            this.master.setPlayers(new Robot("Robot " + i, 0));
+            this.master.setPlayers(new Robot("Robot " + i, -1));
         }  
         master.setRoundNumber(52/this.master.getPlayers().size());
         master.initDeck();

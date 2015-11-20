@@ -21,7 +21,7 @@ public class Master {
     private String trump;
     
     public Master(){
-        round_index = 2;
+        round_index = 13;
     }
     
     public void setDeck(ArrayList<Card> deck){
@@ -98,7 +98,11 @@ public class Master {
         }
         
         String[] types = {"spades", "hearts", "clubs", "diamonds"};
-        this.trump = types[rnd.nextInt(4)];    
+        this.trump = types[rnd.nextInt(4)]; //adu beállítása
+        for (int i = 0; i < deck.size(); i++){ //adu alapján a RoundRank beállítása a becsléshez
+            if(this.getTrump() == (deck.get(i).getType()))
+                deck.get(i).setRoundRank(10);
+        }
     }
     
     public void dealCards(){
