@@ -22,9 +22,11 @@ public class Rikiki{
     ArrayList<DrawPlayer> drawplayers = new ArrayList<DrawPlayer>();
     Master master = new Master();
     RikikiJFrame frame = new RikikiJFrame();
+    boolean halftime;
     
     public Rikiki(){
         frame.setVisible(true);
+        this.halftime = false;
     }
         
     public void init(){
@@ -33,7 +35,7 @@ public class Rikiki{
         for(Integer i = 0; i < Integer.parseInt(this.frame.choice); i++){
             this.master.setPlayers(new Robot("Robot " + i, -1));
         }  
-        master.setRoundNumber(52/this.master.getPlayers().size());
+        master.setRoundNumber((52/this.master.getPlayers().size())*2-2);
         master.initDeck();
     }
     
@@ -67,7 +69,7 @@ public class Rikiki{
     public void draw(){
         
         frame.TrumpPic.setIcon(new ImageIcon(master.getTrump() + "_trump.jpg"));
-                
+        frame.RoundNumber.setText(this.master.round_index-1 + "/" + this.master.round_number);
         for(int c = 0; c < master.getPlayer(0).getCards().size(); c++){
             DrawCard card = new DrawCard();
             card.TypeLabel.setIcon(new ImageIcon(master.getPlayer(0).getCard(c).getType() + ".jpg"));
@@ -105,13 +107,19 @@ public class Rikiki{
             card.addMouseListener(mouselistener);
             frame.PlayerPanel.add(card);
         }
+        
+        for(Card card : this.master.cardsOnTable){
+            DrawCard card2 = new DrawCard();
+            card2.TypeLabel.setIcon(new ImageIcon(card.getType() + ".jpg"));
+            card2.ValueLabel.setText(card.getValue());
+        }
         frame.revalidate();
        
     }
     
     public void game(){
         //for ciklus -> k=1 - körök számáig
-        for(int k = 1; k <= this.master.round_number; k++)
+        for(int k = 1; k <= this.master.round_number; k++){
             this.master.shuffleDeck();
             //round változóba belerakja, hogy hány kör lesz, ez alapján a kártyák kiosztás
             this.master.dealCards();
@@ -125,11 +133,16 @@ public class Rikiki{
             }
             //for ciklussal végigmenni a meneteken
             for(int i = 1; i<=this.master.round_index; i++){
-                this.master.round(i);
+               
+                    this.master.round(i);
+  
                 this.master.getWinner();    
             }
+            
+           // if(k >= this.master.round_number/2)
             this.master.sum();
             
+        }
         // for ciklus után -> nyertes kihirdetése
         this.master.getFinalWinner();
     }

@@ -14,14 +14,15 @@ public class Master {
     
     private ArrayList<Card> deck;
     private ArrayList<Player> players = new ArrayList<Player>();
-    private ArrayList<Card> cardsOnTable; //már játékon kívüli lapok
-    private ArrayList<Card> cardsInPlay; //épp játékban lévő lapok
+    public ArrayList<Card> cardsOnTable = new ArrayList<Card>(); //már játékon kívüli lapok
+    private ArrayList<Card> cardsInPlay = new ArrayList<Card>(); //épp játékban lévő lapok
     public int round_index;
     public int round_number;
     private String trump;
     
     public Master(){
-        round_index = 13;
+        round_index = 2;
+        
     }
     
     public void setDeck(ArrayList<Card> deck){
@@ -130,8 +131,15 @@ public class Master {
         //for ciklussal végigmenni a játékosokon, figyelni kell, hogy ki a kezdő játékos + a sorrendre
             // meghívja a játékosok pick metódusát
             // ellenőrző metódus, hogy a játékosok jót dobtak-e
-            Card c = new Card("A", "spades", 10);
-            boolean check = this.checkCard(c);
+             for (Player player : this.players){
+                 this.cardsInPlay.add(player.pick());
+                 try{
+                 Thread.sleep(500);
+                 }catch(Exception e){
+                     System.out.println("Hiba1");
+                 }
+             }
+           // boolean check = this.checkCard(c);
             
     }
     

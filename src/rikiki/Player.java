@@ -33,6 +33,11 @@ public class Player {
         return this.name;
     }
     
+     public Card pick(){
+       Card c = cards.remove(cards.size()-1);
+       return c;
+    }
+    
     public void setName(String name){
         this.name = name;
     }

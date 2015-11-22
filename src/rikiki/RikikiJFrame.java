@@ -68,7 +68,6 @@ public class RikikiJFrame extends javax.swing.JFrame {
         RoundLabel.setText("ROUND:");
 
         RoundNumber.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        RoundNumber.setText("0");
 
         trumpLabel.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         trumpLabel.setText("TRUMP:");
@@ -81,12 +80,12 @@ public class RikikiJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(RoundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(RoundNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addComponent(RoundNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(trumpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TrumpPic, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         TopPanelLayout.setVerticalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

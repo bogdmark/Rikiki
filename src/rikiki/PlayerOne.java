@@ -10,7 +10,8 @@ import javax.swing.JOptionPane;
 public class PlayerOne extends Player{
  
     public Card pick(){
-        return new Card("A", "1", 10);
+       Card c = cards.remove(cards.size()-1);
+       return c;
     }
     
     public Integer getEstimate(){

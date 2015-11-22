@@ -14,7 +14,8 @@ public class Robot extends Player{
         this.type = type;
     }
     public Card pick(){
-       return new Card("A", "1", 10);
+       Card c = cards.remove(cards.size()-1);
+       return c;
     }
     
     public void setEstimate(){
