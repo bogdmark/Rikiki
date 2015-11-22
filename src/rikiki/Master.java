@@ -13,9 +13,9 @@ import java.util.Random;
 public class Master {
     
     private ArrayList<Card> deck;
-    private ArrayList<Player> players = new ArrayList<Player>();
+    public ArrayList<Player> players = new ArrayList<Player>();
     public ArrayList<Card> cardsOnTable = new ArrayList<Card>(); //már játékon kívüli lapok
-    private ArrayList<Card> cardsInPlay = new ArrayList<Card>(); //épp játékban lévő lapok
+    public ArrayList<Card> cardsInPlay = new ArrayList<Card>(); //épp játékban lévő lapok
     public int round_index;
     public int round_number;
     private String trump;
@@ -127,21 +127,7 @@ public class Master {
         return true;
     }
     
-    public void round(int i){
-        //for ciklussal végigmenni a játékosokon, figyelni kell, hogy ki a kezdő játékos + a sorrendre
-            // meghívja a játékosok pick metódusát
-            // ellenőrző metódus, hogy a játékosok jót dobtak-e
-             for (Player player : this.players){
-                 this.cardsInPlay.add(player.pick());
-                 try{
-                 Thread.sleep(500);
-                 }catch(Exception e){
-                     System.out.println("Hiba1");
-                 }
-             }
-           // boolean check = this.checkCard(c);
-            
-    }
+    
     
     public void getWinner(){
         //az asztalon lévő kártyák közül kiválasztja a nyertest, és beazonosítja a hozzá tartozó játékost

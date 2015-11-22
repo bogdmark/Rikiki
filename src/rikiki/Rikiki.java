@@ -10,35 +10,48 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 
 /**
- * Példányosítások + GUI
  * @author Márk
  */
 public class Rikiki{
 
-    /**
-     * @param args the command line arguments
-     */
     PlayerOne player1 = new PlayerOne();
     ArrayList<DrawPlayer> drawplayers = new ArrayList<DrawPlayer>();
     Master master = new Master();
     RikikiJFrame frame = new RikikiJFrame();
     boolean halftime;
+    boolean player1Turn;
+    boolean click;
     
     public Rikiki(){
         frame.setVisible(true);
         this.halftime = false;
+        this.player1Turn = false;
+        this.click = false;
     }
-        
+    
+    /*
+    * Pár alap beállítás, miután a játékos megadta a robotok számát
+    */
     public void init(){
         
+        // Játkos beállítása
         master.setPlayers(player1);
+        
+        // Robotok beállítása a felhasználó választása alapján
         for(Integer i = 0; i < Integer.parseInt(this.frame.choice); i++){
             this.master.setPlayers(new Robot("Robot " + i, -1));
-        }  
+        }
+        
+        // Játékosok száma alapján a menetek számának meghatározása
         master.setRoundNumber((52/this.master.getPlayers().size())*2-2);
+        
+        // Pakli generálása
         master.initDeck();
     }
     
+    /*
+    * Pár alap dolog, pl. táblázat kirajzolása
+    */
     public void drawBase(){
         
         frame.PlayerPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -62,14 +75,17 @@ public class Rikiki{
             player.PlayerLabel.setText(master.getPlayer(p).getName() + ":");
             playerone.EstimateLabel.setText(this.master.getPlayer(p).getEstimate().toString());
             frame.ScorePanel.add(player);
-        }
-        
+        }      
     }
     
-    public void draw(){
+    /*
+    * Körök elejének kirajzolása: Adu + Player1 kártyái az eseménykezelőkkel.
+    */
+    public void drawRoundBegin(){
         
         frame.TrumpPic.setIcon(new ImageIcon(master.getTrump() + "_trump.jpg"));
         frame.RoundNumber.setText(this.master.round_index-1 + "/" + this.master.round_number);
+        frame.PlayerPanel.removeAll();
         for(int c = 0; c < master.getPlayer(0).getCards().size(); c++){
             DrawCard card = new DrawCard();
             card.TypeLabel.setIcon(new ImageIcon(master.getPlayer(0).getCard(c).getType() + ".jpg"));
@@ -78,15 +94,21 @@ public class Rikiki{
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if(e.getClickCount()==2){
+                    if(e.getClickCount()==2 && player1Turn == true){
+                        player1Turn = false;
+                        click = true;
+                        for(Card card : master.players.get(0).getCards()){
+                            //meg kell találni a kijelölt kártyát
+                        }
                         frame.TablePanel.add((DrawCard)e.getSource());
                         frame.revalidate();
                         frame.repaint();
+                        
                     }
                 }
                 @Override
                 public void mousePressed(MouseEvent e) {
-                  
+               
                 }
 
                 @Override
@@ -107,14 +129,47 @@ public class Rikiki{
             card.addMouseListener(mouselistener);
             frame.PlayerPanel.add(card);
         }
-        
-        for(Card card : this.master.cardsOnTable){
-            DrawCard card2 = new DrawCard();
-            card2.TypeLabel.setIcon(new ImageIcon(card.getType() + ".jpg"));
-            card2.ValueLabel.setText(card.getValue());
-        }
         frame.revalidate();
-       
+    }
+    
+    public void round(int i){
+        // TODO!!! helyes sorrend
+        // TODO!!! ellenőrző metódus, hogy a játékosok jót dobtak-e
+        frame.TablePanel.removeAll();
+        for (Player player : this.master.players){
+            
+            //lekéri a kártyát, amit dob a játékos
+            if(player instanceof PlayerOne){
+                this.player1Turn = true; 
+                  while(!this.click){ 
+                      try{
+                        //Kell, mert különben nem működik  
+                        Thread.sleep(500);
+                      } catch(Exception e){
+                          System.out.println("Hiba a szálkezelésben (PlayerOne)");
+                      }
+                  }
+                 this.click = false;
+            }
+            else {
+                Card c = player.pick();
+                this.master.cardsInPlay.add(c);
+            
+                 //kirajzolás
+                DrawCard card2 = new DrawCard();
+                card2.TypeLabel.setIcon(new ImageIcon(c.getType() + ".jpg"));
+                card2.ValueLabel.setText(c.getValue());
+                frame.TablePanel.add(card2);
+            }
+            frame.revalidate();
+            frame.repaint();
+                 
+            try{
+                Thread.sleep(1000);
+            } catch(Exception e){
+                System.out.println("Hiba az időzítéssel!");
+            }
+        }    
     }
     
     public void game(){
@@ -124,7 +179,7 @@ public class Rikiki{
             //round változóba belerakja, hogy hány kör lesz, ez alapján a kártyák kiosztás
             this.master.dealCards();
             //kirajzol
-            this.draw();
+            this.drawRoundBegin();
             //becslések begyűjtése
             this.master.setEstimates();
             
@@ -134,14 +189,14 @@ public class Rikiki{
             //for ciklussal végigmenni a meneteken
             for(int i = 1; i<=this.master.round_index; i++){
                
-                    this.master.round(i);
-  
-                this.master.getWinner();    
+                this.round(i);
+                this.master.getWinner();
+                
             }
             
            // if(k >= this.master.round_number/2)
             this.master.sum();
-            
+            this.master.round_index++;
         }
         // for ciklus után -> nyertes kihirdetése
         this.master.getFinalWinner();
