@@ -101,7 +101,7 @@ public class Master {
         String[] types = {"spades", "hearts", "clubs", "diamonds"};
         this.trump = types[rnd.nextInt(4)]; //adu beállítása
         for (int i = 0; i < deck.size(); i++){ //adu alapján a RoundRank beállítása a becsléshez
-            if(this.getTrump() == (deck.get(i).getType()))
+            if(this.getTrump().equals(deck.get(i).getType()))
                 deck.get(i).setRoundRank(10);
         }
     }
@@ -129,13 +129,34 @@ public class Master {
     
     
     
-    public void getWinner(){
+    public int getWinner(){
         //az asztalon lévő kártyák közül kiválasztja a nyertest, és beazonosítja a hozzá tartozó játékost
         //majd növeli annak a nyeréseinek számát -> játékosok hits változója
+        Card temp = this.cardsInPlay.get(0);
+        int winner_index = 0;
+        for(int i = 1; i < this.cardsInPlay.size(); i++){
+            if((temp.getType().equals(this.cardsInPlay.get(i).getType()) && this.cardsInPlay.get(i).getAllTimeRank() > temp.getAllTimeRank()) ||
+              (!temp.getType().equals(this.getTrump()) && this.cardsInPlay.get(i).getType().equals(this.getTrump()))){
+                temp = this.cardsInPlay.get(i);
+                winner_index = i;
+            }
+        }
+        System.out.println(winner_index);
+        this.players.get(winner_index).hits++;
+        return winner_index;
     }
     
     public void sum(){
         // round-ok végén összeveti a becsléseket és a nyeréseket, és ezalapján kiszámolja a kapott pontszámot
+        for(Player player: this.players){
+            if(player.hits.equals(player.estimate)){
+                player.score += 10+2*(player.estimate);
+            }
+            else{
+                player.score -= 2*Math.abs(player.hits-player.estimate);
+            }
+            player.hits = 0;
+        }
     }
     
     public void getFinalWinner(){

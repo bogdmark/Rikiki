@@ -13,12 +13,14 @@ public class Player {
     public String name;
     public ArrayList<Card> cards;
     public Integer estimate;
-    public int score;
-    public int hits;
+    public Integer score;
+    public Integer hits;
     
     public Player(String name){
         this.cards = new ArrayList<>();
         this.score = 0;
+        this.estimate = 0;
+        this.hits = 0;
         this.name = name;
     }
     
@@ -26,6 +28,7 @@ public class Player {
         this.cards = new ArrayList<>();
         this.score = 0;
         this.estimate = 0;
+        this.hits = 0;
         this.name = "player";
     }
     
@@ -63,7 +66,7 @@ public class Player {
         this.estimate = 0;
     }
     
-    public int getScore(){
+    public Integer getScore(){
         return this.score;
     }
     
@@ -71,7 +74,7 @@ public class Player {
         this.score = score;
     }
     
-    public int getHits(){
+    public Integer getHits(){
         return this.hits;
     }
     

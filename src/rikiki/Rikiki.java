@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  * @author Márk
@@ -58,6 +59,8 @@ public class Rikiki{
         frame.ScorePanel.setLayout(new BoxLayout(frame.ScorePanel, BoxLayout.PAGE_AXIS));
         frame.TablePanel.setLayout(new FlowLayout(FlowLayout.LEADING));
         
+        frame.TopPanel.setVisible(true);
+        
         DrawHeader header = new DrawHeader();
         frame.ScorePanel.add(header);
         DrawPlayer playerone = new DrawPlayer();
@@ -89,6 +92,7 @@ public class Rikiki{
         for(int c = 0; c < master.getPlayer(0).getCards().size(); c++){
             DrawCard card = new DrawCard();
             card.TypeLabel.setIcon(new ImageIcon(master.getPlayer(0).getCard(c).getType() + ".jpg"));
+            card.type = master.getPlayer(0).getCard(c).getType();
             card.ValueLabel.setText(master.getPlayer(0).getCard(c).getValue());
             MouseListener mouselistener = new MouseListener() {
 
@@ -97,10 +101,17 @@ public class Rikiki{
                     if(e.getClickCount()==2 && player1Turn == true){
                         player1Turn = false;
                         click = true;
-                        for(Card card : master.players.get(0).getCards()){
+                        DrawCard temp_card = (DrawCard)e.getSource();;
+                        
+                        for(int c = 0; c < master.players.get(0).cards.size(); c++){  
+                            Card card = master.players.get(0).getCard(c);
                             //meg kell találni a kijelölt kártyát
+                            if(temp_card.type.equals(card.getType()) && temp_card.ValueLabel.getText().equals(card.getValue())){
+                                master.cardsInPlay.add(master.players.get(0).cards.remove(c));
+                            }
+                            
                         }
-                        frame.TablePanel.add((DrawCard)e.getSource());
+                        frame.TablePanel.add(temp_card);
                         frame.revalidate();
                         frame.repaint();
                         
@@ -148,10 +159,10 @@ public class Rikiki{
                       } catch(Exception e){
                           System.out.println("Hiba a szálkezelésben (PlayerOne)");
                       }
-                  }
-                 this.click = false;
+                  }               
             }
             else {
+                this.click = false;
                 Card c = player.pick();
                 this.master.cardsInPlay.add(c);
             
@@ -176,10 +187,14 @@ public class Rikiki{
         //for ciklus -> k=1 - körök számáig
         for(int k = 1; k <= this.master.round_number; k++){
             this.master.shuffleDeck();
+            System.out.println(this.master.getTrump());
             //round változóba belerakja, hogy hány kör lesz, ez alapján a kártyák kiosztás
             this.master.dealCards();
             //kirajzol
             this.drawRoundBegin();
+            for(int i = 0; i < this.master.getPlayers().size(); i++){
+               this.drawplayers.get(i).hitsLabel.setText("0");
+            }
             //becslések begyűjtése
             this.master.setEstimates();
             
@@ -190,13 +205,20 @@ public class Rikiki{
             for(int i = 1; i<=this.master.round_index; i++){
                
                 this.round(i);
-                this.master.getWinner();
+                int winner = this.master.getWinner();
+                this.drawplayers.get(winner).hitsLabel.setText(this.master.getPlayer(winner).getHits().toString());
                 
+                this.master.cardsOnTable.addAll(this.master.cardsInPlay);
+                this.master.cardsInPlay.removeAll(this.master.cardsInPlay); //TODO -> ezt ellenörizni!!!
             }
             
            // if(k >= this.master.round_number/2)
             this.master.sum();
+            for(int i = 0; i < this.master.getPlayers().size(); i++){
+               this.drawplayers.get(i).ScoreLabel.setText(this.master.getPlayer(i).getScore().toString());
+            }
             this.master.round_index++;
+            
         }
         // for ciklus után -> nyertes kihirdetése
         this.master.getFinalWinner();
@@ -210,10 +232,16 @@ public class Rikiki{
         int cntr = 0;
         while(!Thread.interrupted() && !rikiki.frame.exit){
             if(rikiki.frame.start && cntr < 1){
-                rikiki.init();
-                rikiki.drawBase();
-                rikiki.game();
-                cntr++;
+                if(rikiki.frame.choice == null){
+                    cntr = 0;
+                    rikiki.frame.start = false;
+                }
+                else{
+                    rikiki.init();
+                    rikiki.drawBase();
+                    rikiki.game();
+                    cntr++;
+                } 
             }
       
         }

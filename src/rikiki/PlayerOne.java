@@ -8,11 +8,6 @@ import javax.swing.JOptionPane;
  * @author Márk
  */
 public class PlayerOne extends Player{
- 
-    public Card pick(){
-       Card c = cards.remove(cards.size()-1);
-       return c;
-    }
     
     public Integer getEstimate(){
       
@@ -20,8 +15,21 @@ public class PlayerOne extends Player{
    
     }
     
+    @Override
     public void setEstimate(){
-             
-        this.estimate = Integer.parseInt(JOptionPane.showInputDialog("What's your estimate?" ));
+        boolean ok = false;
+        while(!ok){
+            try{
+                this.estimate = Integer.parseInt(JOptionPane.showInputDialog("What's your estimate?" ));
+                if(this.estimate < 0 || this.estimate > this.cards.size()){
+                    JOptionPane.showMessageDialog(null, "Hibás becslés!");
+                }
+                else{
+                    ok = true;
+                }
+            } catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Nem becsültél!");
+            }
+        }
     }
 }

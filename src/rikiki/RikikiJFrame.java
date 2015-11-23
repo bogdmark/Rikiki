@@ -19,6 +19,7 @@ public class RikikiJFrame extends javax.swing.JFrame {
         this.choice = "";
         this.start = false;
         this.exit = false;
+        this.TopPanel.setVisible(false);
     }
 
     /**
@@ -85,7 +86,7 @@ public class RikikiJFrame extends javax.swing.JFrame {
                 .addComponent(trumpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TrumpPic, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(320, Short.MAX_VALUE))
         );
         TopPanelLayout.setVerticalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +134,7 @@ public class RikikiJFrame extends javax.swing.JFrame {
         ScorePanel.setLayout(ScorePanelLayout);
         ScorePanelLayout.setHorizontalGroup(
             ScorePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 177, Short.MAX_VALUE)
+            .addGap(0, 275, Short.MAX_VALUE)
         );
         ScorePanelLayout.setVerticalGroup(
             ScorePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,13 +148,12 @@ public class RikikiJFrame extends javax.swing.JFrame {
             .addGroup(MainPanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(ScorePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(PlayerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TablePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(TopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(TablePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+                    .addComponent(PlayerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +243,7 @@ public class RikikiJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem Start;
     private javax.swing.JDialog StartDialog;
     public javax.swing.JPanel TablePanel;
-    private javax.swing.JPanel TopPanel;
+    public javax.swing.JPanel TopPanel;
     public javax.swing.JLabel TrumpPic;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

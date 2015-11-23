@@ -10,8 +10,11 @@ public class DrawCard extends javax.swing.JPanel {
     /**
      * Creates new form DrawCard
      */
+    public String type;
+    
     public DrawCard() {
         initComponents();
+        this.type = "";
     }
 
     /**
@@ -32,7 +35,6 @@ public class DrawCard extends javax.swing.JPanel {
         ValueLabel.setBackground(new java.awt.Color(255, 255, 255));
         ValueLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ValueLabel.setText("A");
         ValueLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ValueLabel.setPreferredSize(new java.awt.Dimension(45, 45));
 
