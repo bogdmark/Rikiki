@@ -15,6 +15,7 @@ public class Player {
     public Integer estimate;
     public Integer score;
     public Integer hits;
+    public int index;
     
     public Player(String name){
         this.cards = new ArrayList<>();
@@ -22,6 +23,7 @@ public class Player {
         this.estimate = 0;
         this.hits = 0;
         this.name = name;
+        this.index = 0;
     }
     
     public Player(){

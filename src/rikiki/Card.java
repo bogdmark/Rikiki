@@ -12,11 +12,13 @@ public class Card {
     private final int allTimeRank; //mindenkori érték a pakliban -> hogy pl. a király értéke könnyen összehasonlítható legyen egy számmal.
     private int roundRank; //amikor van már adu
     private int currentRank; // aktuális érték
+    public int ownerID;
     
     public Card(String type, String value, int allTimeRank){
         this.type = type;
         this.value = value;
         this.allTimeRank = allTimeRank;
+        this.ownerID = -1;
     }
     
     public String getType(){

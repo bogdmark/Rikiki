@@ -22,17 +22,20 @@ public class Rikiki{
     boolean halftime;
     boolean player1Turn;
     boolean click;
+    int winner_index;
     
     public Rikiki(){
         frame.setVisible(true);
         this.halftime = false;
         this.player1Turn = false;
         this.click = false;
+        this.winner_index = 0;
     }
     
     /*
     * Pár alap beállítás, miután a játékos megadta a robotok számát
     */
+    
     public void init(){
         
         // Játkos beállítása
@@ -41,6 +44,12 @@ public class Rikiki{
         // Robotok beállítása a felhasználó választása alapján
         for(Integer i = 0; i < Integer.parseInt(this.frame.choice); i++){
             this.master.setPlayers(new Robot("Robot " + i, -1));
+        }
+        
+        int i = 0;
+        for(Player player: this.master.players){
+            player.index = i;
+            i++;
         }
         
         // Játékosok száma alapján a menetek számának meghatározása
@@ -143,22 +152,27 @@ public class Rikiki{
         frame.revalidate();
     }
     
+    public void setIndex(){
+        this.winner_index = this.master.round_index-2%this.master.players.size();
+    }
+    
     public void round(int i){
-        // TODO!!! helyes sorrend
         // TODO!!! ellenőrző metódus, hogy a játékosok jót dobtak-e
         frame.TablePanel.removeAll();
-        for (Player player : this.master.players){
+        for (int index = this.winner_index; index < this.winner_index+this.master.players.size(); index++){
             
+            Player player = this.master.players.get(index%this.master.players.size());
             //lekéri a kártyát, amit dob a játékos
             if(player instanceof PlayerOne){
                 this.player1Turn = true; 
+                System.out.println("Ide");
                   while(!this.click){ 
                       try{
                         //Kell, mert különben nem működik  
-                        Thread.sleep(500);
+                        Thread.sleep(1000);
                       } catch(Exception e){
                           System.out.println("Hiba a szálkezelésben (PlayerOne)");
-                      }
+                      }    
                   }               
             }
             else {
@@ -176,7 +190,7 @@ public class Rikiki{
             frame.repaint();
                  
             try{
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch(Exception e){
                 System.out.println("Hiba az időzítéssel!");
             }
@@ -188,6 +202,15 @@ public class Rikiki{
         for(int k = 1; k <= this.master.round_number; k++){
             this.master.shuffleDeck();
             System.out.println(this.master.getTrump());
+            this.setIndex();
+           
+            if(this.master.round_index > 9){
+                this.master.backward_index += 2;
+            }
+            
+            if(this.master.round_index == 9){
+                this.master.backward_index = 1;
+            }
             //round változóba belerakja, hogy hány kör lesz, ez alapján a kártyák kiosztás
             this.master.dealCards();
             //kirajzol
@@ -202,21 +225,22 @@ public class Rikiki{
                this.drawplayers.get(i).EstimateLabel.setText(this.master.getPlayer(i).getEstimate().toString());
             }
             //for ciklussal végigmenni a meneteken
-            for(int i = 1; i<=this.master.round_index; i++){
+            for(int i = 1; i<=this.master.round_index-(this.master.backward_index); i++){
                
                 this.round(i);
-                int winner = this.master.getWinner();
-                this.drawplayers.get(winner).hitsLabel.setText(this.master.getPlayer(winner).getHits().toString());
+                this.winner_index = this.master.getWinner();
+                this.drawplayers.get(this.winner_index).hitsLabel.setText(this.master.getPlayer(this.winner_index).getHits().toString());
                 
                 this.master.cardsOnTable.addAll(this.master.cardsInPlay);
                 this.master.cardsInPlay.removeAll(this.master.cardsInPlay); //TODO -> ezt ellenörizni!!!
             }
             
-           // if(k >= this.master.round_number/2)
+           
             this.master.sum();
             for(int i = 0; i < this.master.getPlayers().size(); i++){
                this.drawplayers.get(i).ScoreLabel.setText(this.master.getPlayer(i).getScore().toString());
             }
+            // if(k >= this.master.round_number/2)s
             this.master.round_index++;
             
         }

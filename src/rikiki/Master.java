@@ -19,10 +19,11 @@ public class Master {
     public int round_index;
     public int round_number;
     private String trump;
+    public int backward_index;
     
     public Master(){
         round_index = 2;
-        
+        backward_index = 0;
     }
     
     public void setDeck(ArrayList<Card> deck){
@@ -109,8 +110,10 @@ public class Master {
     public void dealCards(){
         
         int nextCard = 0;
-        for(int i = 1; i<=this.round_index; i++){
+
+        for(int i = 1; i<=this.round_index-this.backward_index; i++){
             for(int j=0; j<this.players.size(); j++){
+                this.deck.get(nextCard).ownerID = j;
                 this.players.get(j).setCard(this.deck.get(nextCard));
                 nextCard++;
             }
@@ -141,9 +144,8 @@ public class Master {
                 winner_index = i;
             }
         }
-        System.out.println(winner_index);
-        this.players.get(winner_index).hits++;
-        return winner_index;
+        this.players.get(this.cardsInPlay.get(winner_index).ownerID).hits++;
+        return this.cardsInPlay.get(winner_index).ownerID;
     }
     
     public void sum(){
