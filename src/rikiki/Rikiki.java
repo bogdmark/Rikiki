@@ -176,7 +176,7 @@ public class Rikiki{
                   }               
             }
             else {
-                this.click = false;
+                
                 Card c = player.pick();
                 this.master.cardsInPlay.add(c);
             
@@ -188,6 +188,7 @@ public class Rikiki{
             }
             frame.revalidate();
             frame.repaint();
+            this.click = false;
                  
             try{
                 Thread.sleep(500);
