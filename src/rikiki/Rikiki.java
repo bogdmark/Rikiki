@@ -107,30 +107,55 @@ public class Rikiki{
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if(e.getClickCount()== 2 && player1Turn == true){
-                        
-                        
-                        DrawCard temp_card = (DrawCard)e.getSource();
-                        
+                    if(e.getClickCount()== 2 && player1Turn == true){                                               
+                        DrawCard temp_card = (DrawCard)e.getSource();                        
                         for(int c = 0; c < master.players.get(0).cards.size(); c++){  
                             Card card = master.players.get(0).getCard(c);
                             //meg kell találni a kijelölt kártyát
-                            if(temp_card.type.equals(card.getType()) && temp_card.ValueLabel.getText().equals(card.getValue())
-                                    && (master.cardsInPlay.isEmpty() || temp_card.type.equals(master.cardsInPlay.get(c).getType()))){
+                            //kattintott kártya típusának lekérése
+                            if(temp_card.type.equals(card.getType()) && temp_card.ValueLabel.getText().equals(card.getValue())){
+                                //ha üres az asztal, vagy a hívott lappal egyenlő amit rakni akarunk, rakhatjuk
+                                if(master.cardsInPlay.isEmpty() || temp_card.type.equals(master.cardsInPlay.get(0).getType())){ 
+                                    master.cardsInPlay.add(master.players.get(0).cards.remove(c));
+                                    frame.TablePanel.add(temp_card);
+                                    frame.revalidate();
+                                    frame.repaint();
+                                    player1Turn = false;
+                                    click = true;
+                                    System.out.println("kezdő");}
+                                // ha nincs a kezünkben a hívott lap, rakhatunk adut
+                                else if(!temp_card.type.equals(master.cardsInPlay.get(0).getType()) && master.players.get(0).cards.get(c).getRoundRank() > 19){ 
+                                    master.cardsInPlay.add(master.players.get(0).cards.remove(c));
+                                    frame.TablePanel.add(temp_card);
+                                    frame.revalidate();
+                                    frame.repaint();
+                                    player1Turn = false;
+                                    click = true;
+                                    System.out.println("hívott lap helyett adu");}
+                                // ha nincs se hívott lap se adu a kezünkben, rakhatunk bármit.
+                                else {
+                                    boolean nothingToHand = true;
+                                    for(int i = 0; i < master.players.get(0).cards.size(); i++ ){
+                                        if(master.players.get(0).cards.get(i).getRoundRank() > 19)
+                                            nothingToHand = false;
+                                    }
+                                    if(nothingToHand){ 
                                         master.cardsInPlay.add(master.players.get(0).cards.remove(c));
                                         frame.TablePanel.add(temp_card);
                                         frame.revalidate();
                                         frame.repaint();
                                         player1Turn = false;
                                         click = true;
-                            }
-                            else
-                                System.out.println("Hibás lapválasztás");
-                        }
-
-                        
+                                        System.out.println("hívott lap nincs, adu nincs");}
+                                    else
+                                        System.out.println("Hibás lapválasztás");
+                                        
+                                }                                        
+                            }                            
+                        }                        
                     }
                 }
+                
                 @Override
                 public void mousePressed(MouseEvent e) {
                

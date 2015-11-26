@@ -103,7 +103,7 @@ public class Master {
         this.trump = types[rnd.nextInt(4)]; //adu beállítása
         for (int i = 0; i < deck.size(); i++){ //adu alapján a RoundRank beállítása a becsléshez
             if(this.getTrump().equals(deck.get(i).getType()))
-                deck.get(i).setRoundRank(10);
+                deck.get(i).setRoundRank(20);
         }
     }
     
