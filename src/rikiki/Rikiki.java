@@ -107,22 +107,27 @@ public class Rikiki{
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if(e.getClickCount()==2 && player1Turn == true){
-                        player1Turn = false;
-                        click = true;
+                    if(e.getClickCount()== 2 && player1Turn == true){
+                        
+                        
                         DrawCard temp_card = (DrawCard)e.getSource();;
                         
                         for(int c = 0; c < master.players.get(0).cards.size(); c++){  
                             Card card = master.players.get(0).getCard(c);
                             //meg kell találni a kijelölt kártyát
-                            if(temp_card.type.equals(card.getType()) && temp_card.ValueLabel.getText().equals(card.getValue())){
-                                master.cardsInPlay.add(master.players.get(0).cards.remove(c));
+                            if(temp_card.type.equals(card.getType()) && temp_card.ValueLabel.getText().equals(card.getValue())
+                                    && (master.cardsInPlay.isEmpty() || temp_card.type.equals(master.cardsInPlay.get(c).getType()))){
+                                        master.cardsInPlay.add(master.players.get(0).cards.remove(c));
+                                        frame.TablePanel.add(temp_card);
+                                        frame.revalidate();
+                                        frame.repaint();
+                                        player1Turn = false;
+                                        click = true;
                             }
-                            
+                            else
+                                System.out.println("Hibás lapválasztás");
                         }
-                        frame.TablePanel.add(temp_card);
-                        frame.revalidate();
-                        frame.repaint();
+
                         
                     }
                 }
