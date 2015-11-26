@@ -110,7 +110,7 @@ public class Rikiki{
                     if(e.getClickCount()== 2 && player1Turn == true){
                         
                         
-                        DrawCard temp_card = (DrawCard)e.getSource();;
+                        DrawCard temp_card = (DrawCard)e.getSource();
                         
                         for(int c = 0; c < master.players.get(0).cards.size(); c++){  
                             Card card = master.players.get(0).getCard(c);
@@ -246,7 +246,8 @@ public class Rikiki{
             for(int i = 0; i < this.master.getPlayers().size(); i++){
                this.drawplayers.get(i).ScoreLabel.setText(this.master.getPlayer(i).getScore().toString());
             }
-            // if(k >= this.master.round_number/2)s
+            this.master.cardsOnTable.removeAll(this.master.cardsOnTable);
+
             this.master.round_index++;
             
         }
