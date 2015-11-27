@@ -21,16 +21,18 @@ public class Robot extends Player{
     public void setEstimate(){
         this.estimate = 0;
         if(type == -1){ //minimalista becslő beállítása
-            for (Card card : cards) { /*Ha a kapott lapok között szerepel Ász, vagy adu Ász 
+            for (Card card : cards) { 
+                /*Ha a kapott lapok között szerepel Ász, vagy adu Ász 
                     vagy adu Király akkor 1-gyel növeljük a becslést*/
-                if ("A".equals(card.getValue()) || card.getRoundRank() == 32 || card.getRoundRank() == 31) {
-                    this.estimate++;
-                }
-                if (card.getRoundRank() == 32) // Ha nálunk van az adu Ász és az adu Király is, növeljük a becslést
+                if ("A".equals(card.getValue())) this.estimate++;
+                if(card.getRoundRank() == 32 || card.getRoundRank() == 31) this.estimate++;
+                // Ha nálunk van az adu Ász és az adu Király is, növeljük a becslést
+                if (card.getRoundRank() == 32) 
                     for (int i = 0; i < cards.size(); i++)
                         if (card.getRoundRank() == 31)
                             this.estimate++;
-                if (card.getRoundRank() == 32) //Ha nálunk van az adu Ász és az adu Király és az adu Dáma is, növeljük a becslést
+                //Ha nálunk van az adu Ász és az adu Király és az adu Dáma is, növeljük a becslést
+                if (card.getRoundRank() == 32) 
                     for (int i = 0; i < cards.size(); i++)
                         if (card.getRoundRank() == 31)
                            for (int j = 0; j < cards.size(); j++)
