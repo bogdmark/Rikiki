@@ -136,8 +136,9 @@ public class Rikiki{
                                 else {
                                     boolean nothingToHand = true;
                                     for(int i = 0; i < master.players.get(0).cards.size(); i++ ){
-                                        if(master.players.get(0).cards.get(i).getRoundRank() > 19)
-                                            nothingToHand = false;
+                                        if(master.players.get(0).cards.get(i).getRoundRank() > 19 && 
+                                                !(master.cardsInPlay.get(0).getType().equals(master.players.get(0).cards.get(i).getType())))
+                                                nothingToHand = false;
                                     }
                                     if(nothingToHand){ 
                                         master.cardsInPlay.add(master.players.get(0).cards.remove(c));

@@ -86,6 +86,8 @@ public class Master {
     Megkeveri a kártyapaklit + kiválasztja az adut!
     */
     public void shuffleDeck(){
+        
+        this.initDeck();
      
         Random rnd = new Random();
         
