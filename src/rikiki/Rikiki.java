@@ -90,6 +90,15 @@ public class Rikiki{
         }      
     }
     
+    public void putOnTable(int c, DrawCard temp_card){
+        master.cardsInPlay.add(master.players.get(0).cards.remove(c));
+        frame.TablePanel.add(temp_card);
+        frame.revalidate();
+        frame.repaint();
+        player1Turn = false;
+        click = true;
+    }
+    
     /*
     * Körök elejének kirajzolása: Adu + Player1 kártyái az eseménykezelőkkel.
     */
@@ -117,22 +126,12 @@ public class Rikiki{
                             //kattintott kártya típusának lekérése
                             if(temp_card.type.equals(card.getType()) && temp_card.ValueLabel.getText().equals(card.getValue())){
                                 //ha üres az asztal, rakhatunk bármit 
-                                if(master.cardsInPlay.isEmpty()){ 
-                                    master.cardsInPlay.add(master.players.get(0).cards.remove(c));
-                                    frame.TablePanel.add(temp_card);
-                                    frame.revalidate();
-                                    frame.repaint();
-                                    player1Turn = false;
-                                    click = true;
+                                if(master.cardsInPlay.isEmpty()){
+                                    putOnTable(c,temp_card);
                                     System.out.println("kezdő");}
                                 // hívott lappal egyenlő amit rakni akarunk, rakhatjuk
                                 else if(temp_card.type.equals(master.cardsInPlay.get(0).getType())){ 
-                                    master.cardsInPlay.add(master.players.get(0).cards.remove(c));
-                                    frame.TablePanel.add(temp_card);
-                                    frame.revalidate();
-                                    frame.repaint();
-                                    player1Turn = false;
-                                    click = true;
+                                    putOnTable(c,temp_card);
                                     System.out.println("a hívottat raktuk");}
                                 // ha amire kattintunk nem a hívott lap, de adu, rakhatjuk, ha nincs a kezünkben a hívott lapból egy sem
                                 else if(!temp_card.type.equals(master.cardsInPlay.get(0).getType()) && master.players.get(0).cards.get(c).getRoundRank() > 19){
@@ -142,12 +141,7 @@ public class Rikiki{
                                             ok = false;
                                     }
                                     if(ok){
-                                        master.cardsInPlay.add(master.players.get(0).cards.remove(c));
-                                        frame.TablePanel.add(temp_card);
-                                        frame.revalidate();
-                                        frame.repaint();
-                                        player1Turn = false;
-                                        click = true;
+                                        putOnTable(c,temp_card);
                                         System.out.println("hívott lap helyett adu");
                                         ok = false;}
                                     else{
@@ -161,12 +155,7 @@ public class Rikiki{
                                         if(master.cardsInPlay.get(0).getType().equals(master.players.get(0).cards.get(i).getType()))
                                             ok = false;}
                                     if(ok){
-                                        master.cardsInPlay.add(master.players.get(0).cards.remove(c));
-                                        frame.TablePanel.add(temp_card);
-                                        frame.revalidate();
-                                        frame.repaint();
-                                        player1Turn = false;
-                                        click = true;
+                                        putOnTable(c,temp_card);
                                         System.out.println("hívott lap nincs, adu sincs");
                                         ok = false;}
                                     else{
