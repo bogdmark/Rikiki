@@ -48,7 +48,7 @@ public class Rikiki{
         
         int i = 0;
         for(Player player: this.master.players){
-            player.index = i;
+            player.setIndex(i);
             i++;
         }
         
@@ -273,6 +273,13 @@ public class Rikiki{
                
                 this.round(i);
                 this.winner_index = this.master.getWinner();
+                //for ciklusban beállítjuk a kezdőjátékoshoz tartozó roundstarter változót
+                for(int j = 0; j < this.master.players.size(); j ++){
+                    if(this.winner_index == this.master.getPlayers().get(j).getIndex())
+                        this.master.players.get(j).setRoundStarter(true);
+                    else
+                        this.master.players.get(j).setRoundStarter(false);
+                }
                 this.drawplayers.get(this.winner_index).hitsLabel.setText(this.master.getPlayer(this.winner_index).getHits().toString());
                 
                 this.master.cardsOnTable.addAll(this.master.cardsInPlay);
