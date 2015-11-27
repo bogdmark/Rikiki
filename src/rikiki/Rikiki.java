@@ -98,6 +98,8 @@ public class Rikiki{
         frame.TrumpPic.setIcon(new ImageIcon(master.getTrump() + "_trump.jpg"));
         frame.RoundNumber.setText(this.master.round_index-1 + "/" + this.master.round_number);
         frame.PlayerPanel.removeAll();
+        frame.revalidate();
+        frame.repaint();
         for(int c = 0; c < master.getPlayer(0).getCards().size(); c++){
             DrawCard card = new DrawCard();
             card.TypeLabel.setIcon(new ImageIcon(master.getPlayer(0).getCard(c).getType() + ".jpg"));
@@ -107,7 +109,7 @@ public class Rikiki{
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if(e.getClickCount()== 2 && player1Turn == true){                                               
+                    if(e.getClickCount()== 2 && player1Turn == true){
                         DrawCard temp_card = (DrawCard)e.getSource();                        
                         for(int c = 0; c < master.players.get(0).cards.size(); c++){  
                             Card card = master.players.get(0).getCard(c);
@@ -115,7 +117,7 @@ public class Rikiki{
                             //kattintott kártya típusának lekérése
                             if(temp_card.type.equals(card.getType()) && temp_card.ValueLabel.getText().equals(card.getValue())){
                                 //ha üres az asztal, rakhatunk bármit 
-                                if(master.cardsInPlay.isEmpty() || temp_card.type.equals(master.cardsInPlay.get(0).getType())){ 
+                                if(master.cardsInPlay.isEmpty()){ 
                                     master.cardsInPlay.add(master.players.get(0).cards.remove(c));
                                     frame.TablePanel.add(temp_card);
                                     frame.revalidate();
@@ -199,8 +201,6 @@ public class Rikiki{
             card.addMouseListener(mouselistener);
             frame.PlayerPanel.add(card);
         }
-        frame.revalidate();
-        frame.repaint();
     }
     
     public void setIndex(){
@@ -215,6 +215,8 @@ public class Rikiki{
             Player player = this.master.players.get(index%this.master.players.size());
             //lekéri a kártyát, amit dob a játékos
             if(player instanceof PlayerOne){
+                frame.revalidate();
+                frame.repaint();
                 this.player1Turn = true; 
                 System.out.println("Ide");
                   while(!this.click){ 
@@ -237,9 +239,10 @@ public class Rikiki{
                 card2.ValueLabel.setText(c.getValue());
                 frame.TablePanel.add(card2);
             }
+
+            this.click = false;
             frame.revalidate();
             frame.repaint();
-            this.click = false;
                  
             try{
                 Thread.sleep(500);
