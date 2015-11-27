@@ -166,8 +166,8 @@ public class Rikiki{
                                         putOnTable(c,temp_card);
                                         System.out.println("hívott lap nincs, adu sincs");
                                         ok = false;}
-//                                    else{
-//                                        System.out.println("Hibás lapválasztás, van a kezedben hívott lap/adu");
+                                    else{
+                                        System.out.println("Hibás lapválasztás, van a kezedben hívott lap/adu");
                                    }
                                 }                                            
                             }                            
