@@ -148,18 +148,26 @@ public class Rikiki{
                                         System.out.println("Hibás lapválasztás, van a kezedben hívott lap(adura kattintottál)");
                                     }
                                 }
-                                // ha amire kattintunk nem a hívott lap és nem is adu, akkor rakhatjuk ha nincs a kezünkben a hívott lapból
+                                // ha amire kattintunk nem a hívott lap és nem is adu, akkor rakhatjuk ha nincs a kezünkben a hívott lapból, vagy aduból
                                 else if(!temp_card.type.equals(master.cardsInPlay.get(0).getType()) && master.players.get(0).cards.get(c).getRoundRank() < 19){
                                     boolean ok = true;
+                                    boolean trump = false;
                                     for(int i = 0; i < master.players.get(0).cards.size(); i++ ){
                                         if(master.cardsInPlay.get(0).getType().equals(master.players.get(0).cards.get(i).getType()))
-                                            ok = false;}
+                                            ok = false;
+                                        if(master.players.get(0).cards.get(i).getRoundRank() > 19)
+                                            trump = true;
+                                    }
+                                    if(ok && trump){
+                                        System.out.println("Hibás lapválasztás, hívott lap nincs, adu van");
+                                        ok = false;
+                                        trump = false;}
                                     if(ok){
                                         putOnTable(c,temp_card);
                                         System.out.println("hívott lap nincs, adu sincs");
                                         ok = false;}
-                                    else{
-                                        System.out.println("Hibás lapválasztás, van a kezedben hívott lap");
+//                                    else{
+//                                        System.out.println("Hibás lapválasztás, van a kezedben hívott lap/adu");
                                    }
                                 }                                            
                             }                            
