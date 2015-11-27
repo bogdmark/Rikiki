@@ -119,6 +119,7 @@ public class Rikiki{
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if(e.getClickCount()== 2 && player1Turn == true){
+                        
                         DrawCard temp_card = (DrawCard)e.getSource();                        
                         for(int c = 0; c < master.players.get(0).cards.size(); c++){  
                             Card card = master.players.get(0).getCard(c);
@@ -216,13 +217,14 @@ public class Rikiki{
                 frame.revalidate();
                 frame.repaint();
                 this.player1Turn = true; 
-                  while(!this.click){ 
-                      try{
+                  while(!this.click && !Thread.interrupted()){ 
+                
+                     /* try{
                         //Kell, mert különben nem működik  
                         Thread.sleep(1000);
                       } catch(Exception e){
                           System.out.println("Hiba a szálkezelésben (PlayerOne)");
-                      }    
+                      }    */
                   }               
             }
             else {

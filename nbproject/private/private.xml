@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Eliakwu/Documents/GitHub/Rikiki/src/rikiki/PlayerOne.java</file>
-            <file>file:/C:/Users/Eliakwu/Documents/GitHub/Rikiki/src/rikiki/Player.java</file>
-            <file>file:/C:/Users/Eliakwu/Documents/GitHub/Rikiki/src/rikiki/Robot.java</file>
-            <file>file:/C:/Users/Eliakwu/Documents/GitHub/Rikiki/src/rikiki/Master.java</file>
-            <file>file:/C:/Users/Eliakwu/Documents/GitHub/Rikiki/src/rikiki/Rikiki.java</file>
-            <file>file:/C:/Users/Eliakwu/Documents/GitHub/Rikiki/src/rikiki/Card.java</file>
+            <file>file:/C:/Users/Márk/Documents/MI/Rikiki/src/rikiki/DrawCard.java</file>
+            <file>file:/C:/Users/Márk/Documents/MI/Rikiki/src/rikiki/Robot.java</file>
+            <file>file:/C:/Users/Márk/Documents/MI/Rikiki/src/rikiki/DrawHeader.java</file>
+            <file>file:/C:/Users/Márk/Documents/MI/Rikiki/src/rikiki/PlayerOne.java</file>
+            <file>file:/C:/Users/Márk/Documents/MI/Rikiki/src/rikiki/Rikiki.java</file>
+            <file>file:/C:/Users/Márk/Documents/MI/Rikiki/src/rikiki/RikikiJFrame.java</file>
+            <file>file:/C:/Users/Márk/Documents/MI/Rikiki/src/rikiki/Player.java</file>
+            <file>file:/C:/Users/Márk/Documents/MI/Rikiki/src/rikiki/Card.java</file>
+            <file>file:/C:/Users/Márk/Documents/MI/Rikiki/src/rikiki/Master.java</file>
+            <file>file:/C:/Users/Márk/Documents/MI/Rikiki/src/rikiki/DrawPlayer.java</file>
         </group>
     </open-files>
 </project-private>
