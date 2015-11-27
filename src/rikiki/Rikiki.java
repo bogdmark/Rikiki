@@ -202,12 +202,12 @@ public class Rikiki{
         for (int index = this.winner_index; index < this.winner_index+this.master.players.size(); index++){
             
             Player player = this.master.players.get(index%this.master.players.size());
+            this.drawplayers.get(index%this.master.players.size()).arrowLabel.setIcon(new ImageIcon("arrow.jpg"));
             //lekéri a kártyát, amit dob a játékos
             if(player instanceof PlayerOne){
                 frame.revalidate();
                 frame.repaint();
                 this.player1Turn = true; 
-                System.out.println("Ide");
                   while(!this.click){ 
                       try{
                         //Kell, mert különben nem működik  
@@ -238,6 +238,7 @@ public class Rikiki{
             } catch(Exception e){
                 System.out.println("Hiba az időzítéssel!");
             }
+            this.drawplayers.get(index%this.master.players.size()).arrowLabel.setIcon(new ImageIcon("empty.jpg"));
         }    
     }
     
@@ -248,11 +249,11 @@ public class Rikiki{
             System.out.println(this.master.getTrump());
             this.setIndex();
            
-            if(this.master.round_index > 9){
+            if(this.master.round_index > this.master.round_number/2+2){
                 this.master.backward_index += 2;
             }
             
-            if(this.master.round_index == 9){
+            if(this.master.round_index == this.master.round_number/2+2){
                 this.master.backward_index = 1;
             }
             //round változóba belerakja, hogy hány kör lesz, ez alapján a kártyák kiosztás
