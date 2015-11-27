@@ -23,7 +23,7 @@ public class Robot extends Player{
         if(type == -1){ //minimalista becslő beállítása
             for (Card card : cards) { /*Ha a kapott lapok között szerepel Ász, vagy adu Ász 
                     vagy adu Király akkor 1-gyel növeljük a becslést*/
-                if (card.getValue() == "A" || card.getRoundRank() == 32 || card.getRoundRank() == 31) {
+                if ("A".equals(card.getValue()) || card.getRoundRank() == 32 || card.getRoundRank() == 31) {
                     this.estimate++;
                 }
                 if (card.getRoundRank() == 32) // Ha nálunk van az adu Ász és az adu Király is, növeljük a becslést

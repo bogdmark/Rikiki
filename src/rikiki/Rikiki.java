@@ -124,34 +124,64 @@ public class Rikiki{
                                     click = true;
                                     System.out.println("kezdő");}
                                 // ha nincs a kezünkben a hívott lap, rakhatunk adut
-                                else if(!temp_card.type.equals(master.cardsInPlay.get(0).getType()) && master.players.get(0).cards.get(c).getRoundRank() > 19){ 
-                                    master.cardsInPlay.add(master.players.get(0).cards.remove(c));
-                                    frame.TablePanel.add(temp_card);
-                                    frame.revalidate();
-                                    frame.repaint();
-                                    player1Turn = false;
-                                    click = true;
-                                    System.out.println("hívott lap helyett adu");}
-                                // ha nincs se hívott lap se adu a kezünkben, rakhatunk bármit.
-                                else {
-                                    boolean nothingToHand = true;
+                                else if(!temp_card.type.equals(master.cardsInPlay.get(0).getType()) && master.players.get(0).cards.get(c).getRoundRank() > 19){
+                                    boolean ok = true;
                                     for(int i = 0; i < master.players.get(0).cards.size(); i++ ){
-                                        if(master.players.get(0).cards.get(i).getRoundRank() > 19 && 
-                                                !(master.cardsInPlay.get(0).getType().equals(master.players.get(0).cards.get(i).getType())))
-                                                nothingToHand = false;
+                                        if(master.cardsInPlay.get(0).getType().equals(master.players.get(0).cards.get(i).getType()))
+                                            ok = false;
                                     }
-                                    if(nothingToHand){ 
+                                    if(ok){
                                         master.cardsInPlay.add(master.players.get(0).cards.remove(c));
                                         frame.TablePanel.add(temp_card);
                                         frame.revalidate();
                                         frame.repaint();
                                         player1Turn = false;
                                         click = true;
-                                        System.out.println("hívott lap nincs, adu nincs");}
-                                    else
-                                        System.out.println("Hibás lapválasztás");
-                                        
-                                }                                        
+                                        System.out.println("hívott lap helyett adu");
+                                        ok = false;}
+                                    else{
+                                        System.out.println("Hibás lapválasztás, van a kezedben hívott lap");
+                                    }
+                                }
+                                // ha nincs a kezünkben hívott lap, de van adunk, akkor adut kell raknunk
+                                else if(!temp_card.type.equals(master.cardsInPlay.get(0).getType()) && master.players.get(0).cards.get(c).getRoundRank() < 19){
+                                    boolean ok = true;
+                                    for(int i = 0; i < master.players.get(0).cards.size(); i++ )
+                                        if(master.players.get(0).cards.get(i).getRoundRank() > 19)
+                                            ok = false;
+                                    if(ok){
+                                        master.cardsInPlay.add(master.players.get(0).cards.remove(c));
+                                        frame.TablePanel.add(temp_card);
+                                        frame.revalidate();
+                                        frame.repaint();
+                                        player1Turn = false;
+                                        click = true;
+                                        System.out.println("hívott lap nincs, adu sincs");
+                                        ok = false;}
+                                    else{
+                                        System.out.println("Hibás lapválasztás, van a kezedben adu");
+                                    }
+                                }                                
+                                // ha nincs se hívott lap se adu a kezünkben, rakhatunk bármit.
+//                                else {
+//                                    boolean nothingToHand = true;
+//                                    for(int i = 0; i < master.players.get(0).cards.size(); i++ ){
+//                                        if(master.players.get(0).cards.get(i).getRoundRank() > 19 && 
+//                                                !(master.cardsInPlay.get(0).getType().equals(master.players.get(0).cards.get(i).getType())))
+//                                                nothingToHand = false;
+//                                    }
+//                                    if(nothingToHand){ 
+//                                        master.cardsInPlay.add(master.players.get(0).cards.remove(c));
+//                                        frame.TablePanel.add(temp_card);
+//                                        frame.revalidate();
+//                                        frame.repaint();
+//                                        player1Turn = false;
+//                                        click = true;
+//                                        System.out.println("hívott lap nincs, adu nincs");}
+//                                    else
+//                                        System.out.println("Hibás lapválasztás");
+//                                        
+//                                }                                        
                             }                            
                         }                        
                     }
@@ -181,6 +211,7 @@ public class Rikiki{
             frame.PlayerPanel.add(card);
         }
         frame.revalidate();
+        frame.repaint();
     }
     
     public void setIndex(){
