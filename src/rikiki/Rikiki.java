@@ -42,8 +42,18 @@ public class Rikiki{
         master.setPlayers(player1);
         
         // Robotok beállítása a felhasználó választása alapján
-        for(Integer i = 0; i < Integer.parseInt(this.frame.choice); i++){
+        // Robotok beállítása, mind a 3 típust kipróbáljuk
+        for(int i = 0; i < Integer.parseInt(this.frame.choice); i++){
             this.master.setPlayers(new Robot("Robot " + i, -1));
+            i++;
+            if(i < Integer.parseInt(this.frame.choice)){
+                this.master.setPlayers(new Robot("Robot " + i, 0));
+                i++;}
+            if(i < Integer.parseInt(this.frame.choice))
+            {
+                this.master.setPlayers(new Robot("Robot " + i, 1));
+                i++;
+            }
         }
         
         int i = 0;
