@@ -32,6 +32,7 @@ public class RikikiJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         StartDialog = new javax.swing.JDialog();
+        jDialog1 = new javax.swing.JDialog();
         MainPanel = new javax.swing.JPanel();
         TopPanel = new javax.swing.JPanel();
         RoundLabel = new java.awt.Label();
@@ -46,6 +47,7 @@ public class RikikiJFrame extends javax.swing.JFrame {
         Start = new javax.swing.JMenuItem();
         Exit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout StartDialogLayout = new javax.swing.GroupLayout(StartDialog.getContentPane());
         StartDialog.getContentPane().setLayout(StartDialogLayout);
@@ -55,6 +57,17 @@ public class RikikiJFrame extends javax.swing.JFrame {
         );
         StartDialogLayout.setVerticalGroup(
             StartDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
@@ -190,7 +203,16 @@ public class RikikiJFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Help");
+
+        jMenuItem1.setText("Játékszabályok");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -229,6 +251,10 @@ public class RikikiJFrame extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -245,8 +271,10 @@ public class RikikiJFrame extends javax.swing.JFrame {
     public javax.swing.JPanel TablePanel;
     public javax.swing.JPanel TopPanel;
     public javax.swing.JLabel TrumpPic;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private java.awt.Label trumpLabel;
     // End of variables declaration//GEN-END:variables
 }
