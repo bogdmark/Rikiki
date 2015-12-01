@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Container class="javax.swing.JDialog" name="helpScreen">
+      <Properties>
+        <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
+          <Rectangle value="[0, 0, 300, 300]"/>
+        </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 400]"/>
+        </Property>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="helpPanel">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="String help1 = &quot;&lt;html&gt;A rikiki egy a bridgehez hasonl&#xf3; k&#xe1;rtyaj&#xe1;t&#xe9;k. Legal&#xe1;bb h&#xe1;rman j&#xe1;tsz&#xe1;k egy pakli franciak&#xe1;rty&#xe1;val. Mindenkinek osztanak ugyan annyi lapot &#xe9;s sorsolnak egy adu sz&#xed;nt a j&#xe1;t&#xe9;kosok. &lt;/br&gt;&quot; &#xa;                + &quot;(A francia k&#xe1;rtya sz&#xed;nei: pikk &#x2660;, k&#x151;r &#x2665;, k&#xe1;r&#xf3; &#x2666; &#xe9;s treff &#x2663;.) &lt;/br&gt;&quot;&#xa;                + &quot;Az egyik j&#xe1;t&#xe9;kost kiv&#xe1;lasztj&#xe1;k indul&#xf3;nak (emberek k&#xf6;z&#xf6;tt az oszt&#xf3;t&#xf3;l jobbra &#xfc;l&#x151;), &#x151; fog els&#x151;nek h&#xed;vni. Ut&#xe1;na mindenki megtippeli, hogy h&#xe1;ny &#xfc;t&#xe9;se lesz. &lt;/br&gt;&quot;&#xa;                + &quot;A h&#xed;v&#xf3; j&#xe1;t&#xe9;kos kiv&#xe1;laszt egy k&#xe1;rty&#xe1;t &#xe9;s kirakja. Ut&#xe1;na minden j&#xe1;t&#xe9;kosnak sorban haladva r&#xe1; kell raknia egy ugyan olyan sz&#xed;n&#x171; lapot, vagy ha nincs neki olyan sz&#xed;n&#x171;, akkor egy adut &#xe9;s ha az sincs akkor tetsz&#x151;leges lapot. &lt;/br&gt;&quot;&#xa;                + &quot;Az &#xfc;t, aki&#xe9; a legnagyobb lap a h&#xed;vott sz&#xed;nben, vagy ha ker&#xfc;lt bele adu, akkor az aki a legnagyobb adut rakta. Az &#xe1;sz a legnagyobb, ut&#xe1;na a d&#xe1;ma, majd a bubi &#xe9;s ut&#xe1;na a sz&#xe1;mos lapok k&#xf6;vetkeznek. Aki &#xfc;t&#xf6;tt az h&#xed;v k&#xf6;vetkez&#x151;nek. &lt;/br&gt;&quot;&#xa;                + &quot;Ha elfogytak a lapok mindenki megsz&#xe1;molja az &#xfc;t&#xe9;seit aki annyit &#xfc;t&#xf6;tt ah&#xe1;nyat v&#xe1;llalt, az 10+2*n pontot kap, ahol n az &#xfc;t&#xe9;seinek sz&#xe1;ma. &lt;/br&gt;Aki pedig a v&#xe1;lal&#xe1;s&#xe1;t&#xf3;l elt&#xe9;r&#x151; sz&#xe1;m&#xfa;t &#xfc;t&#xf6;tt az -2*|n-v| pontot kap, ahol n szint&#xe9;n az &#xfc;t&#xe9;sek sz&#xe1;ma &#xe9;s v a v&#xe1;llal&#xe1;sok sz&#xe1;ma. Lehet null&#xe1;t is v&#xe1;llalni.&lt;/html&gt;&quot;;"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+              <BorderConstraints direction="Center"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="help1" type="code"/>
+                </Property>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                  <BorderConstraints direction="Center"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
     <Container class="javax.swing.JDialog" name="StartDialog">
 
       <Layout>
@@ -17,7 +61,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="javax.swing.JDialog" name="jDialog1">
+    <Container class="javax.swing.JFrame" name="jFrame1">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -32,7 +76,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="javax.swing.JDialog" name="jDialog2">
+    <Container class="javax.swing.JFrame" name="jFrame2">
 
       <Layout>
         <DimensionLayout dim="0">

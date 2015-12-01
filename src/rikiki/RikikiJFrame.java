@@ -1,8 +1,10 @@
 package rikiki;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.*;
+
 /**
  *
  * @author Márk
@@ -15,7 +17,7 @@ public class RikikiJFrame extends javax.swing.JFrame {
     public String choice;
     public boolean start;
     public boolean exit;
-    
+
     public RikikiJFrame() {
         initComponents();
         this.choice = "";
@@ -33,9 +35,12 @@ public class RikikiJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        helpScreen = new javax.swing.JDialog();
+        helpPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         StartDialog = new javax.swing.JDialog();
-        jDialog1 = new javax.swing.JDialog();
-        jDialog2 = new javax.swing.JDialog();
+        jFrame1 = new javax.swing.JFrame();
+        jFrame2 = new javax.swing.JFrame();
         MainPanel = new javax.swing.JPanel();
         TopPanel = new javax.swing.JPanel();
         RoundLabel = new java.awt.Label();
@@ -52,6 +57,23 @@ public class RikikiJFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
+        helpScreen.setBounds(new java.awt.Rectangle(0, 0, 300, 300));
+        helpScreen.setMaximumSize(new java.awt.Dimension(400, 400));
+
+        helpPanel.setLayout(new java.awt.BorderLayout());
+        String help1 = "<html>A rikiki egy a bridgehez hasonló kártyajáték. Legalább hárman játszák egy pakli franciakártyával. Mindenkinek osztanak ugyan annyi lapot és sorsolnak egy adu színt a játékosok. </br>"
+        + "(A francia kártya színei: pikk ♠, kőr ♥, káró ♦ és treff ♣.) </br>"
+        + "Az egyik játékost kiválasztják indulónak (emberek között az osztótól jobbra ülő), ő fog elsőnek hívni. Utána mindenki megtippeli, hogy hány ütése lesz. </br>"
+        + "A hívó játékos kiválaszt egy kártyát és kirakja. Utána minden játékosnak sorban haladva rá kell raknia egy ugyan olyan színű lapot, vagy ha nincs neki olyan színű, akkor egy adut és ha az sincs akkor tetszőleges lapot. </br>"
+        + "Az üt, akié a legnagyobb lap a hívott színben, vagy ha került bele adu, akkor az aki a legnagyobb adut rakta. Az ász a legnagyobb, utána a dáma, majd a bubi és utána a számos lapok következnek. Aki ütött az hív következőnek. </br>"
+        + "Ha elfogytak a lapok mindenki megszámolja az ütéseit aki annyit ütött ahányat vállalt, az 10+2*n pontot kap, ahol n az ütéseinek száma. </br>Aki pedig a válalásától eltérő számút ütött az -2*|n-v| pontot kap, ahol n szintén az ütések száma és v a vállalások száma. Lehet nullát is vállalni.</html>";
+
+        jLabel1.setText(help1);
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        helpPanel.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        helpScreen.getContentPane().add(helpPanel, java.awt.BorderLayout.CENTER);
+
         javax.swing.GroupLayout StartDialogLayout = new javax.swing.GroupLayout(StartDialog.getContentPane());
         StartDialog.getContentPane().setLayout(StartDialogLayout);
         StartDialogLayout.setHorizontalGroup(
@@ -63,25 +85,25 @@ public class RikikiJFrame extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
-        jDialog2.getContentPane().setLayout(jDialog2Layout);
-        jDialog2Layout.setHorizontalGroup(
-            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
+        jFrame2.getContentPane().setLayout(jFrame2Layout);
+        jFrame2Layout.setHorizontalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        jDialog2Layout.setVerticalGroup(
-            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jFrame2Layout.setVerticalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
@@ -248,16 +270,16 @@ public class RikikiJFrame extends javax.swing.JFrame {
     private void StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartActionPerformed
         // TODO add your handling code here:
         String[] robotCntr = {"2", "3", "4", "5"};
-        this.choice = (String) JOptionPane.showInputDialog(this, 
-                        "How many robots do you want to play against?",
-                        "Number",
-                        JOptionPane.QUESTION_MESSAGE, 
-                        null, 
-                        robotCntr, 
-                        robotCntr[0]);
-        
+        this.choice = (String) JOptionPane.showInputDialog(this,
+                "How many robots do you want to play against?",
+                "Number",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                robotCntr,
+                robotCntr[0]);
+
         this.start = true;
-        
+
     }//GEN-LAST:event_StartActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
@@ -266,25 +288,18 @@ public class RikikiJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
-        jDialog1.setTitle("Help");
-        jDialog1.setSize(200, 100);
-        String help1 = "A rikiki egy a bridgehez hasonló kártyajáték. Legalább hárman játszák egy pakli franciakártyával. Mindenkinek osztanak ugyan annyi lapot és sorsolnak egy adu színt a játékosok. "
-                + "(A francia kártya színei: pikk ♠, kőr ♥, káró ♦ és treff ♣.) "
-                + "Az egyik játékost kiválasztják indulónak (emberek között az osztótól jobbra ülő), ő fog elsőnek hívni. Utána mindenki megtippeli, hogy hány ütése lesz. "
-                + "A hívó játékos kiválaszt egy kártyát és kirakja. Utána minden játékosnak sorban haladva rá kell raknia egy ugyan olyan színű lapot, vagy ha nincs neki olyan színű, akkor egy adut és ha az sincs akkor tetszőleges lapot. "
-                + "Az üt, akié a legnagyobb lap a hívott színben, vagy ha került bele adu, akkor az aki a legnagyobb adut rakta. Az ász a legnagyobb, utána a dáma, majd a bubi és utána a számos lapok következnek. Aki ütött az hív következőnek. "
-                + "Ha elfogytak a lapok mindenki megszámolja az ütéseit aki annyit ütött ahányat vállalt, az 10+2*n pontot kap, ahol n az ütéseinek száma. Aki pedig a válalásától eltérő számút ütött az -2*|n-v| pontot kap, ahol n szintén az ütések száma és v a vállalások száma. Lehet nullát is vállalni.";
-        JPanel help_panel = new JPanel();
-        help_panel.setLayout(new BorderLayout(10,10));
-        help_panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        JLabel help_string_label = new JLabel(help1);
-        help_string_label.setForeground(new Color(50, 50, 25));
-        help_panel.add(help_string_label, BorderLayout.CENTER);
-        jDialog1.add(help_panel);
-        jDialog1.setLocationRelativeTo(null);
-        jDialog1.pack();
-        jDialog1.setVisible(true);
+
+        helpScreen.setTitle("Help");
+        helpScreen.setSize(200, 200);
+//        String help1 = "A rikiki egy a bridgehez hasonló kártyajáték. Legalább hárman játszák egy pakli franciakártyával. Mindenkinek osztanak ugyan annyi lapot és sorsolnak egy adu színt a játékosok. "
+//                + "(A francia kártya színei: pikk ♠, kőr ♥, káró ♦ és treff ♣.) "
+//                + "Az egyik játékost kiválasztják indulónak (emberek között az osztótól jobbra ülő), ő fog elsőnek hívni. Utána mindenki megtippeli, hogy hány ütése lesz. "
+//                + "A hívó játékos kiválaszt egy kártyát és kirakja. Utána minden játékosnak sorban haladva rá kell raknia egy ugyan olyan színű lapot, vagy ha nincs neki olyan színű, akkor egy adut és ha az sincs akkor tetszőleges lapot. "
+//                + "Az üt, akié a legnagyobb lap a hívott színben, vagy ha került bele adu, akkor az aki a legnagyobb adut rakta. Az ász a legnagyobb, utána a dáma, majd a bubi és utána a számos lapok következnek. Aki ütött az hív következőnek. "
+//                + "Ha elfogytak a lapok mindenki megszámolja az ütéseit aki annyit ütött ahányat vállalt, az 10+2*n pontot kap, ahol n az ütéseinek száma. Aki pedig a válalásától eltérő számút ütött az -2*|n-v| pontot kap, ahol n szintén az ütések száma és v a vállalások száma. Lehet nullát is vállalni.";
+        //jDialog1.setLocationRelativeTo(null);
+        helpScreen.pack();
+        helpScreen.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -303,8 +318,11 @@ public class RikikiJFrame extends javax.swing.JFrame {
     public javax.swing.JPanel TablePanel;
     public javax.swing.JPanel TopPanel;
     public javax.swing.JLabel TrumpPic;
-    private javax.swing.JDialog jDialog1;
-    private javax.swing.JDialog jDialog2;
+    private javax.swing.JPanel helpPanel;
+    private javax.swing.JDialog helpScreen;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JFrame jFrame2;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
