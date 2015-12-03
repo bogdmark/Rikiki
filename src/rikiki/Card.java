@@ -13,12 +13,14 @@ public class Card {
     private int roundRank; //amikor van már adu
     private int currentRank; // aktuális érték
     public int ownerID;
+    public boolean toWin;
     
     public Card(String type, String value, int allTimeRank){
         this.type = type;
         this.value = value;
         this.allTimeRank = allTimeRank;
         this.ownerID = -1;
+        this.toWin = false;
     }
     
     public String getType(){
