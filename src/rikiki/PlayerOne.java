@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
  */
 public class PlayerOne extends Player{
     
+    
     public Integer getEstimate(){
       
         return this.estimate;

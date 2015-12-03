@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  * @author Márk
@@ -26,6 +28,7 @@ public class Rikiki{
     
     public Rikiki(){
         frame.setVisible(true);
+        this.player1.setName("Player");
         this.halftime = false;
         this.player1Turn = false;
         this.click = false;
@@ -44,15 +47,15 @@ public class Rikiki{
         // Robotok beállítása a felhasználó választása alapján
         // Robotok beállítása, mind a 3 típust kipróbáljuk
         for(int i = 0; i < Integer.parseInt(this.frame.choice); i++){
+            if( i == 0){
             this.master.setPlayers(new Robot("Robot " + i, -1));
-            i++;
-            if(i < Integer.parseInt(this.frame.choice)){
+                }
+            else if(i == 1){
                 this.master.setPlayers(new Robot("Robot " + i, 0));
-                i++;}
-            if(i < Integer.parseInt(this.frame.choice))
+            }
+            else
             {
                 this.master.setPlayers(new Robot("Robot " + i, 1));
-                i++;
             }
         }
         
@@ -228,13 +231,7 @@ public class Rikiki{
                 frame.repaint();
                 this.player1Turn = true; 
                   while(!this.click && !Thread.interrupted()){ 
-                
-                     /* try{
-                        //Kell, mert különben nem működik  
-                        Thread.sleep(1000);
-                      } catch(Exception e){
-                          System.out.println("Hiba a szálkezelésben (PlayerOne)");
-                      }    */
+                      
                   }               
             }
             else {
@@ -318,7 +315,7 @@ public class Rikiki{
             
         }
         // for ciklus után -> nyertes kihirdetése
-        this.master.getFinalWinner();
+        JOptionPane.showMessageDialog(null, this.master.getFinalWinner());
     }
     
     

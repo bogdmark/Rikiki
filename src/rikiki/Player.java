@@ -96,4 +96,8 @@ public class Player {
     public int getIndex(){
         return index;
     }
+    
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

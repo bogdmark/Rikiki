@@ -22,7 +22,7 @@ public class Master {
     public int backward_index;
     
     public Master(){
-        round_index = 7;
+        round_index = 3;
         backward_index = 0;
     }
     
@@ -163,9 +163,25 @@ public class Master {
         }
     }
     
-    public void getFinalWinner(){
-        
+    // TODO! Nem írja ki szépen!
+    public String getFinalWinner(){
+        Player temp;
+        for(int i=0; i < players.size()-1; i++){
+            for(int j=0; j < players.size()-i-1; j++){
+                if(players.get(j).score < players.get(j+1).score){
+                    temp = players.get(j);
+                    players.set(j, players.get(j+1));
+                    players.set(j+1, temp);
+                }
+            }
+        }
+        String s = "<html>";
+        int i = 1;
+         for(Player player: this.players){
+             s = s.concat(i + "." + player.name + " (" + player.score + ")<br>");
+             i++;
+         }
+         s = s.concat("</html>");
+         return s;
     }
-    
-   
 }
