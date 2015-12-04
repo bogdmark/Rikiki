@@ -12,13 +12,13 @@ import java.util.Random;
  */
 public class Master {
     
-    private ArrayList<Card> deck;
+    public ArrayList<Card> deck;
     public ArrayList<Player> players = new ArrayList<Player>();
     public ArrayList<Card> cardsOnTable = new ArrayList<Card>(); //már játékon kívüli lapok
     public ArrayList<Card> cardsInPlay = new ArrayList<Card>(); //épp játékban lévő lapok
     public int round_index;
     public int round_number;
-    private String trump;
+    public String trump;
     public int backward_index;
     
     public Master(){
@@ -26,37 +26,6 @@ public class Master {
         backward_index = 0;
     }
     
-    public void setDeck(ArrayList<Card> deck){
-        this.deck = deck;
-    }
-    
-    public ArrayList<Card> getDeck(){
-        return this.deck;
-    }
-    
-    public void setRoundNumber(int round){
-        this.round_number = round;
-    }
-    
-    public Card getCard(int i){
-        return this.deck.get(i);
-    }
-    
-    public String getTrump(){
-        return this.trump;
-    }
-    
-    public void setPlayers(Player player){
-        this.players.add(player);
-    }
-    
-    public Player getPlayer(int i){
-        return this.players.get(i);
-    }
-    
-    public ArrayList<Player> getPlayers(){
-        return this.players;
-    }
     /*
     Feltölti a kártyák értékeit
     */
@@ -103,8 +72,9 @@ public class Master {
         
         String[] types = {"spades", "hearts", "clubs", "diamonds"};
         this.trump = types[rnd.nextInt(4)]; //adu beállítása
+        
         for (int i = 0; i < deck.size(); i++){ //adu alapján a RoundRank beállítása a becsléshez
-            if(this.getTrump().equals(deck.get(i).getType()))
+            if(this.trump.equals(deck.get(i).getType()))
                 deck.get(i).setRoundRank(20);
         }
     }
@@ -128,12 +98,6 @@ public class Master {
         }
     }
     
-    public boolean checkCard(Card c){
-        return true;
-    }
-    
-    
-    
     public int getWinner(){
         //az asztalon lévő kártyák közül kiválasztja a nyertest, és beazonosítja a hozzá tartozó játékost
         //majd növeli annak a nyeréseinek számát -> játékosok hits változója
@@ -141,7 +105,7 @@ public class Master {
         int winner_index = 0;
         for(int i = 1; i < this.cardsInPlay.size(); i++){
             if((temp.getType().equals(this.cardsInPlay.get(i).getType()) && this.cardsInPlay.get(i).getAllTimeRank() > temp.getAllTimeRank()) ||
-              (!temp.getType().equals(this.getTrump()) && this.cardsInPlay.get(i).getType().equals(this.getTrump()))){
+              (!temp.getType().equals(this.trump) && this.cardsInPlay.get(i).getType().equals(this.trump))){
                 temp = this.cardsInPlay.get(i);
                 winner_index = i;
             }
@@ -163,9 +127,12 @@ public class Master {
         }
     }
     
-    // TODO! Nem írja ki szépen!
+    
     public String getFinalWinner(){
+        
         Player temp;
+        
+        //bubble sort
         for(int i=0; i < players.size()-1; i++){
             for(int j=0; j < players.size()-i-1; j++){
                 if(players.get(j).score < players.get(j+1).score){
@@ -175,12 +142,15 @@ public class Master {
                 }
             }
         }
+        
         String s = "<html>";
         int i = 1;
-         for(Player player: this.players){
+        
+        for(Player player: this.players){
              s = s.concat(i + "." + player.name + " (" + player.score + ")<br>");
              i++;
          }
+        
          s = s.concat("</html>");
          return s;
     }

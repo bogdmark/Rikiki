@@ -1,6 +1,8 @@
 
 package rikiki;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Márk
@@ -14,6 +16,7 @@ public class Robot extends Player{
         this.type = type;
     }
     public Card pick(){
+       
        Card c = cards.remove(cards.size()-1);
        return c;
     }
@@ -63,7 +66,7 @@ public class Robot extends Player{
             }
             if(this.getRoundStarter()) this.estimate++;
             //túl extrém becslés csökkentése
-            if(this.getEstimate() > 5) this.estimate = 5;
+            if(this.estimate > 5) this.estimate = 5;
         }
         if(type == 1){
             for (Card card : cards) { 
@@ -89,4 +92,5 @@ public class Robot extends Player{
             if(this.getRoundStarter()) this.estimate++;
         }
     }
+    
 }

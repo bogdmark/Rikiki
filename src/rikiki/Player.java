@@ -35,17 +35,13 @@ public class Player {
         this.name = "player";
     }
     
-    public String getName(){
-        return this.name;
-    }
-    
-     public Card pick(){
+     public Card pick(ArrayList<Card> cardsInPlay){
        Card c = cards.remove(cards.size()-1);
        return c;
     }
-    
-    public void setName(String name){
-        this.name = name;
+     
+    private boolean canIwin(){
+        return false;     
     }
     
     public Card getCard(int i){
@@ -55,49 +51,17 @@ public class Player {
     public void setCard(Card card){
         this.cards.add(card);
     }
-    
-    public ArrayList<Card> getCards(){
-        return this.cards;
-    }
-    
-    public Integer getEstimate(){
-      
-       return this.estimate;
-    }
-    
+   
     public void setEstimate(){
         this.estimate = 0;
     }
-    
-    public Integer getScore(){
-        return this.score;
-    }
-    
-    public void setScore(int score){
-        this.score = score;
-    }
-    
-    public Integer getHits(){
-        return this.hits;
-    }
-    
-    public void setHtis(int hits){
-        this.hits = hits;
-    }
+
     public void setRoundStarter(boolean a){
         this.round_starter = a;
     }
+    
     public boolean getRoundStarter(){
         return this.round_starter;
     }
-    public void setIndex(int i){
-        this.index = i;
-    }
-    public int getIndex(){
-        return index;
-    }
     
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
 }

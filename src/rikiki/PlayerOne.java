@@ -16,7 +16,6 @@ public class PlayerOne extends Player{
    
     }
     
-    @Override
     public void setEstimate(){
         boolean ok = false;
         while(!ok){
