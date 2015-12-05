@@ -16,6 +16,7 @@ public class Player {
     public Integer score;
     public Integer hits;
     public int index;
+    public boolean round_starter;
     
     public Player(String name){
         this.cards = new ArrayList<>();
@@ -89,4 +90,13 @@ public class Player {
     public void setEstimate(){
         this.estimate = 0;
     }
+
+    public void setRoundStarter(boolean a){
+        this.round_starter = a;
+    }
+    
+    public boolean getRoundStarter(){
+        return this.round_starter;
+    }
+    
 }
