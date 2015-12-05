@@ -302,14 +302,6 @@ public class Rikiki{
                 this.round(i);
                 this.winner_index = this.master.getWinner();
                 
-                //for ciklusban beállítjuk a kezdőjátékoshoz tartozó roundstarter változót
-                for(int j = 0; j < this.master.players.size(); j ++){
-                    if(this.winner_index == this.master.players.get(j).index)
-                        this.master.players.get(j).setRoundStarter(true);
-                    else
-                        this.master.players.get(j).setRoundStarter(false);
-                }
-                
                 this.drawplayers.get(this.winner_index).hitsLabel.setText(this.master.players.get(this.winner_index).hits.toString());
                 this.master.cardsOnTable.addAll(this.master.cardsInPlay);
                 this.master.cardsInPlay.removeAll(this.master.cardsInPlay);
