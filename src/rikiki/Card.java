@@ -21,6 +21,7 @@ public class Card {
         this.allTimeRank = allTimeRank;
         this.ownerID = -1;
         this.toWin = false;
+        this.roundRank = 0;
     }
     
     public String getType(){
