@@ -240,7 +240,7 @@ public class Rikiki{
                 while(!this.click && !Thread.interrupted()){ }               
             }
             else {
-                Card c = player.pick(this.master.cardsInPlay);
+                Card c = player.pick(this.master.cardsInPlay, this.master.trump);
                 this.master.cardsInPlay.add(c);
             
                  //kirajzolás
