@@ -227,7 +227,13 @@ public class Rikiki{
     public void round(int i){
   
         frame.TablePanel.removeAll();
+        
+        //Robot döntéséhez kell, átadjuk a pick fv-nek. 
+        int players_cntr = this.master.players.size();
+        
         for (int index = this.winner_index; index < this.winner_index+this.master.players.size(); index++){
+            
+            players_cntr--;
             
             Player player = this.master.players.get(index%this.master.players.size());
             this.drawplayers.get(index%this.master.players.size()).arrowLabel.setIcon(new ImageIcon("arrow.jpg"));
@@ -240,7 +246,7 @@ public class Rikiki{
                 while(!this.click && !Thread.interrupted()){ }               
             }
             else {
-                Card c = player.pick(this.master.cardsInPlay, this.master.trump);
+                Card c = player.pick(this.master.cardsInPlay, this.master.trump, players_cntr);
                 this.master.cardsInPlay.add(c);
             
                  //kirajzolás

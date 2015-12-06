@@ -39,7 +39,7 @@ public class Player {
         
     }
     
-     public Card pick(ArrayList<Card> cardsInPlay, String trump){
+     public Card pick(ArrayList<Card> cardsInPlay, String trump, int players_cntr){
          
          ArrayList<Card> playableCards = new ArrayList<Card>();
          Card pickedCard;
@@ -65,7 +65,7 @@ public class Player {
                  pickedCard = this.cantWin(shouldIwin, playableCards);
              } else {
                  ArrayList<Card> winnerCards = this.winnerCards(cardsInPlay, playableCards, trump);
-                 pickedCard = this.canWin(shouldIwin, playableCards, winnerCards);
+                 pickedCard = this.canWin(shouldIwin, playableCards, winnerCards, cardsInPlay, trump, players_cntr);
              }
          }
          
@@ -144,21 +144,27 @@ public class Player {
         ArrayList<Card> winnerCards = new ArrayList();
         
         //Legjobb letett kártya megtalálása
-        Card bestCard = cardsInPlay.get(0);
-        for(Card card: cardsInPlay){
-             if((bestCard.getType().equals(card.getType()) && card.getAllTimeRank() > bestCard.getAllTimeRank()) ||
-              (!bestCard.getType().equals(trump) && card.getType().equals(trump))){
-                 bestCard = card;
-             }
-        }
+        Card bestCard = this.getBestCardInPlay(cardsInPlay, trump);
         
         //Ennél jobbak megkeresése
         for(Card card: playableCards){
-            if(card.getAllTimeRank() > bestCard.getAllTimeRank()){
+            if(card.getRoundRank()> bestCard.getRoundRank()){
                 winnerCards.add(card);
             }
         }
         return winnerCards;
+    }
+    
+    public Card getBestCardInPlay(ArrayList<Card> cardsInPlay, String trump){
+        
+        Card bestCard = cardsInPlay.get(0);
+        for(Card card: cardsInPlay){
+            if((bestCard.getType().equals(card.getType()) && card.getAllTimeRank() > bestCard.getAllTimeRank()) ||
+              (!bestCard.getType().equals(trump) && card.getType().equals(trump))){
+                bestCard = card;
+            }
+        }
+        return bestCard;
     }
     
     /*
@@ -186,7 +192,13 @@ public class Player {
     /*
     * Tud nyerni a körben, de nem feltétlenül kell is nyernie, ez még ki fog derülni. 
     */
-    public Card canWin(boolean shouldIwin, ArrayList<Card> playableCards, ArrayList<Card> winnerCards){
+    public Card canWin(
+            boolean shouldIwin, 
+            ArrayList<Card> playableCards, 
+            ArrayList<Card> winnerCards, 
+            ArrayList<Card> cardsInPlay, 
+            String trump,
+            int players_cntr){
         
         Card pickedCard = playableCards.get(0);
         
@@ -210,18 +222,18 @@ public class Player {
                 if(toWin){
                     pickedCard = finalWin(winnerCards, moreTowin);
                 } else {
-                    pickedCard = this.canWeLoose(playableCards);
+                    pickedCard = this.canILoose(playableCards, cardsInPlay, trump, players_cntr);
                 }
             } else {
                 
                 if(toWin){
                     pickedCard = finalWin(winnerCards, moreTowin);
                 } else {
-                    pickedCard = this.canWeLoose(playableCards);
+                    pickedCard = this.canILoose(playableCards, cardsInPlay, trump, players_cntr);
                 }
             }
         } else {
-            pickedCard = this.canWeLoose(playableCards);
+            pickedCard = this.canILoose(playableCards, cardsInPlay, trump, players_cntr);
         }
         return pickedCard;
     }
@@ -246,9 +258,67 @@ public class Player {
         return pickedCard;
     }
     
-    public Card canWeLoose(ArrayList<Card> playableCards){
-        Card c = playableCards.get(0);
-        return c;
+    public Card canILoose(ArrayList<Card> playableCards, ArrayList<Card> cardsInPlay, String trump, int players_cntr){
+        
+        Card pickedCard = playableCards.get(0);
+        
+        ArrayList<Card> looserCards = this.getLooserCards(playableCards, cardsInPlay, trump);
+        
+        if(looserCards.isEmpty()){
+            if(players_cntr > 0){
+                pickedCard = this.getOptimalCard(playableCards, false);
+            } else {
+                pickedCard = this.getOptimalCard(playableCards, true);
+            }
+        } else {
+            //TODO!! finomítani!, Ezt a laza döntést még később megbánhatja!!
+            // Függenie kéne attól, hogy nyerésre szánt lapjainknak mennyi az esélyük...vagy nem, lehet, hogy így is jó!
+            pickedCard = this.getBestOfLooserCards(looserCards);
+        }
+        
+        return pickedCard;
+    }
+    
+    public ArrayList<Card> getLooserCards(ArrayList<Card> playableCards, ArrayList<Card> cardsInPlay, String trump){
+        
+        ArrayList<Card> looserCards = new ArrayList();
+        Card bestCard = this.getBestCardInPlay(cardsInPlay, trump);
+        
+        for(Card card: playableCards){
+            if(card.getRoundRank() < bestCard.getRoundRank()){
+                looserCards.add(card);
+            }
+        } 
+        return looserCards;
+    }
+    
+    public Card getBestOfLooserCards(ArrayList<Card> looserCards){
+        
+        Card pickedCard = looserCards.get(0);
+        for(Card card: looserCards){
+            if(card.getRoundRank() > pickedCard.getRoundRank()){
+                pickedCard = card;
+            }
+        }
+        return pickedCard;
+    }
+    
+    public Card getOptimalCard(ArrayList<Card> playableCards, boolean lastPlayer){
+        
+        Card pickedCard = playableCards.get(0);
+        
+        for(Card card: playableCards){
+            if(lastPlayer){
+                if(card.getRoundRank() > pickedCard.getRoundRank()){
+                    pickedCard = card;
+                }
+            } else {
+                if(card.getRoundRank() < pickedCard.getRoundRank()){
+                    pickedCard = card;
+                }
+            }
+        }
+        return pickedCard;
     }
     
     public Card getCard(int i){
