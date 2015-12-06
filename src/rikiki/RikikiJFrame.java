@@ -59,7 +59,14 @@ public class RikikiJFrame extends javax.swing.JFrame {
 
         helpScreen.setBounds(new java.awt.Rectangle(0, 0, 300, 300));
         helpScreen.setMaximumSize(new java.awt.Dimension(400, 400));
+        helpScreen.setMinimumSize(new java.awt.Dimension(400, 400));
+        helpScreen.setPreferredSize(new java.awt.Dimension(400, 400));
+        helpScreen.setResizable(false);
 
+        helpPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Játékszabályok"));
+        helpPanel.setAlignmentX(1.0F);
+        helpPanel.setAlignmentY(1.0F);
+        helpPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         helpPanel.setLayout(new java.awt.BorderLayout());
         String help1 = "<html>A rikiki egy a bridgehez hasonló kártyajáték. Legalább hárman játszák egy pakli franciakártyával. Mindenkinek osztanak ugyan annyi lapot és sorsolnak egy adu színt a játékosok. </br>"
         + "(A francia kártya színei: pikk ♠, kőr ♥, káró ♦ és treff ♣.) </br>"
@@ -69,6 +76,9 @@ public class RikikiJFrame extends javax.swing.JFrame {
         + "Ha elfogytak a lapok mindenki megszámolja az ütéseit aki annyit ütött ahányat vállalt, az 10+2*n pontot kap, ahol n az ütéseinek száma. </br>Aki pedig a válalásától eltérő számút ütött az -2*|n-v| pontot kap, ahol n szintén az ütések száma és v a vállalások száma. Lehet nullát is vállalni.</html>";
 
         jLabel1.setText(help1);
+        jLabel1.setAlignmentX(1.0F);
+        jLabel1.setAlignmentY(1.0F);
+        jLabel1.setBorder(new javax.swing.border.MatteBorder(null));
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         helpPanel.add(jLabel1, java.awt.BorderLayout.CENTER);
 
@@ -298,7 +308,7 @@ public class RikikiJFrame extends javax.swing.JFrame {
 //                + "Az üt, akié a legnagyobb lap a hívott színben, vagy ha került bele adu, akkor az aki a legnagyobb adut rakta. Az ász a legnagyobb, utána a dáma, majd a bubi és utána a számos lapok következnek. Aki ütött az hív következőnek. "
 //                + "Ha elfogytak a lapok mindenki megszámolja az ütéseit aki annyit ütött ahányat vállalt, az 10+2*n pontot kap, ahol n az ütéseinek száma. Aki pedig a válalásától eltérő számút ütött az -2*|n-v| pontot kap, ahol n szintén az ütések száma és v a vállalások száma. Lehet nullát is vállalni.";
         //jDialog1.setLocationRelativeTo(null);
-        helpScreen.pack();
+//        helpScreen.pack();
         helpScreen.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
