@@ -52,6 +52,7 @@ public class Player {
         //TODO! ennek a fv-ét megírni!
          if(cardsInPlay.isEmpty()){
              playableCards = this.cards;
+             pickedCard = this.firstToPick(playableCards, shouldIwin);
          }
          //Ha nem ő az első a körben, csak a megengedett lapokat használhatja
          else{
@@ -314,6 +315,27 @@ public class Player {
                 }
             } else {
                 if(card.getRoundRank() < pickedCard.getRoundRank()){
+                    pickedCard = card;
+                }
+            }
+        }
+        return pickedCard;
+    }
+    
+    public Card firstToPick(ArrayList<Card> playableCards, boolean shouldIwin){
+        
+        Card pickedCard = playableCards.get(0);
+        
+        if(!shouldIwin){
+            for(Card card: playableCards){
+                if(card.getRoundRank() < pickedCard.getRoundRank()){
+                    pickedCard = card;
+                }
+            }
+        } else {
+            //TODO!! na ezt lehetne még hangolni a TB alapján
+            for(Card card: playableCards){
+                if(card.getRoundRank() > pickedCard.getRoundRank()){
                     pickedCard = card;
                 }
             }
