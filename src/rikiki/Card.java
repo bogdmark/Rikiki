@@ -11,7 +11,7 @@ public class Card {
     private final String value;
     private final int allTimeRank; //mindenkori érték a pakliban -> hogy pl. a király értéke könnyen összehasonlítható legyen egy számmal.
     private int roundRank; //amikor van már adu
-    private int currentRank; // aktuális érték
+    private double currentRank; // aktuális érték
     public int ownerID;
     public boolean toWin;
     
@@ -40,7 +40,7 @@ public class Card {
         return this.roundRank;
     }
     
-    public int getCurrentRank(){
+    public double getCurrentRank(){
         return this.currentRank;
     }
     
@@ -48,7 +48,7 @@ public class Card {
         this.roundRank = getAllTimeRank() + rank;
     }
     
-    public void setCurrentRank(int rank){
+    public void setCurrentRank(double rank){
         this.currentRank = rank;
     }
 }

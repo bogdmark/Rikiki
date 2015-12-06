@@ -22,7 +22,7 @@ public class Master {
     public int backward_index;
     
     public Master(){
-        round_index = 3;
+        round_index = 2;
         backward_index = 0;
     }
     
