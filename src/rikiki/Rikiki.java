@@ -42,7 +42,6 @@ public class Rikiki{
         // Robotok beállítása a felhasználó választása alapján
         // Robotok beállítása, mind a 4 típust kipróbáljuk
         for(int i = 0; i < Integer.parseInt(this.frame.choice); i++){
-<<<<<<< HEAD
             if( i == 0){
                 this.master.players.add(new Robot("Robot " + i, 0));
             }
@@ -51,7 +50,6 @@ public class Rikiki{
             }
             else{
                 this.master.players.add(new Robot("Robot " + i, -1));
-=======
             if( i%4 == 0){
                 this.master.players.add(new Robot("Robot " + i, -1));
             }
@@ -60,10 +58,10 @@ public class Rikiki{
             }
             else if (i%4 == 2){
                 this.master.players.add(new Robot("Robot " + i, 1));
->>>>>>> b1917659127e3e09ccef7f5937b79a479877ec37
             }
             else{
                 this.master.players.add(new Robot("Robot " + i, 2));
+            }
             }
         }
         
@@ -80,6 +78,7 @@ public class Rikiki{
         
         // Pakli generálása
         master.initDeck();
+    
     }
     
     /*
