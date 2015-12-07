@@ -134,6 +134,9 @@ public class Robot extends Player{
             }
             if(this.getRoundStarter()) this.estimate++;
         }
+        if(type == 2){
+            this.estimate = 0;
+        }
     }
     
     

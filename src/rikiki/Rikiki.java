@@ -45,14 +45,17 @@ public class Rikiki{
         // Robotok beállítása a felhasználó választása alapján
         // Robotok beállítása, mind a 3 típust kipróbáljuk
         for(int i = 0; i < Integer.parseInt(this.frame.choice); i++){
-            if( i == 0){
+            if( i%4 == 0){
                 this.master.players.add(new Robot("Robot " + i, -1));
             }
-            else if(i == 1){
+            else if(i%4 == 1){
                 this.master.players.add(new Robot("Robot " + i, 0));
             }
-            else{
+            else if (i%4 == 2){
                 this.master.players.add(new Robot("Robot " + i, 1));
+            }
+            else{
+                this.master.players.add(new Robot("Robot " + i, 2));
             }
         }
         
@@ -162,6 +165,7 @@ public class Rikiki{
                                         System.out.println("hívott lap helyett adu");
                                         ok = false;}
                                     else{
+                                        JOptionPane.showMessageDialog(null, "Hibás lapválasztás, van a kezedben hívott lap (adura kattintottál)");
                                         System.out.println("Hibás lapválasztás, van a kezedben hívott lap(adura kattintottál)");
                                     }
                                 }
@@ -176,6 +180,7 @@ public class Rikiki{
                                             trump = true;
                                     }
                                     if(ok && trump){
+                                        JOptionPane.showMessageDialog(null, "Hibás lapválasztás, hívott lapod nincs, de adud van");
                                         System.out.println("Hibás lapválasztás, hívott lap nincs, adu van");
                                         ok = false;
                                         trump = false;}
@@ -184,6 +189,7 @@ public class Rikiki{
                                         System.out.println("hívott lap nincs, adu sincs");
                                         ok = false;}
                                     else{
+                                        JOptionPane.showMessageDialog(null, "Hibás lapválasztás, van a kezedben hívott lap/adu");
                                         System.out.println("Hibás lapválasztás, van a kezedben hívott lap/adu");
                                    }
                                 }                                            
