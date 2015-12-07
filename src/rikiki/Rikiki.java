@@ -46,13 +46,13 @@ public class Rikiki{
         // Robotok beállítása, mind a 3 típust kipróbáljuk
         for(int i = 0; i < Integer.parseInt(this.frame.choice); i++){
             if( i == 0){
-                this.master.players.add(new Robot("Robot " + i, -1));
-            }
-            else if(i == 1){
                 this.master.players.add(new Robot("Robot " + i, 0));
             }
-            else{
+            else if(i == 1){
                 this.master.players.add(new Robot("Robot " + i, 1));
+            }
+            else{
+                this.master.players.add(new Robot("Robot " + i, -1));
             }
         }
         
@@ -319,6 +319,12 @@ public class Rikiki{
                 this.drawplayers.get(this.winner_index).hitsLabel.setText(this.master.players.get(this.winner_index).hits.toString());
                 this.master.cardsOnTable.addAll(this.master.cardsInPlay);
                 this.master.cardsInPlay.removeAll(this.master.cardsInPlay);
+                try{
+                    Thread.sleep(1000);
+                } catch (Exception e){
+                    System.out.println(e.getMessage());
+                }
+                
                 frame.TablePanel.removeAll();
             }
             

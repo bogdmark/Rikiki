@@ -7,13 +7,7 @@
         <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
           <Rectangle value="[0, 0, 300, 300]"/>
         </Property>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[400, 400]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[400, 400]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[400, 400]"/>
         </Property>
         <Property name="resizable" type="boolean" value="false"/>
@@ -215,7 +209,7 @@
                   <Component id="ScorePanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="TablePanel" alignment="1" pref="845" max="32767" attributes="0"/>
+                      <Component id="TablePanel" alignment="1" pref="1075" max="32767" attributes="0"/>
                       <Component id="PlayerPanel" max="32767" attributes="0"/>
                       <Component id="TopPanel" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -265,7 +259,7 @@
                       <Component id="trumpLabel" min="-2" pref="145" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="TrumpPic" min="-2" pref="69" max="-2" attributes="0"/>
-                      <EmptySpace pref="320" max="32767" attributes="0"/>
+                      <EmptySpace pref="550" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
