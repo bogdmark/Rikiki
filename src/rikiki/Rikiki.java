@@ -2,15 +2,12 @@
 package rikiki;
 
 import java.awt.FlowLayout;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 /**
  * @author Márk
@@ -43,7 +40,7 @@ public class Rikiki{
         master.players.add(player1);
         
         // Robotok beállítása a felhasználó választása alapján
-        // Robotok beállítása, mind a 3 típust kipróbáljuk
+        // Robotok beállítása, mind a 4 típust kipróbáljuk
         for(int i = 0; i < Integer.parseInt(this.frame.choice); i++){
             if( i%4 == 0){
                 this.master.players.add(new Robot("Robot " + i, -1));
@@ -64,6 +61,7 @@ public class Rikiki{
         for(Player player: this.master.players){
             player.index = i;
             i++;
+            player.nrofplayers = Integer.parseInt(this.frame.choice) + 1;
         }
         
         // Játékosok száma alapján a menetek számának meghatározása
