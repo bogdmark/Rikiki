@@ -42,28 +42,20 @@ public class Rikiki{
         // Robotok beállítása a felhasználó választása alapján
         // Robotok beállítása, mind a 4 típust kipróbáljuk
         for(int i = 0; i < Integer.parseInt(this.frame.choice); i++){
-            if( i == 0){
-                this.master.players.add(new Robot("Robot " + i, 0));
-            }
-            else if(i == 1){
-                this.master.players.add(new Robot("Robot " + i, 1));
-            }
-            else{
-                this.master.players.add(new Robot("Robot " + i, -1));
             if( i%4 == 0){
-                this.master.players.add(new Robot("Robot " + i, -1));
+                this.master.players.add(new Robot("Robot " + i, 0));
             }
             else if(i%4 == 1){
-                this.master.players.add(new Robot("Robot " + i, 0));
+                this.master.players.add(new Robot("Robot " + i, 1));
             }
             else if (i%4 == 2){
-                this.master.players.add(new Robot("Robot " + i, 1));
+                this.master.players.add(new Robot("Robot " + i, -1));
             }
             else{
                 this.master.players.add(new Robot("Robot " + i, 2));
             }
             }
-        }
+        
         
         // Játékosok indexének beállítása
         int i = 0;
