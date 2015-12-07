@@ -252,6 +252,8 @@ public class Rikiki{
                 while(!this.click && !Thread.interrupted()){ }               
             }
             else {
+                player.updateTB();
+                player.recalculate();
                 Card c = player.pick(this.master.cardsInPlay, this.master.trump, players_cntr);
                 this.master.cardsInPlay.add(c);
             

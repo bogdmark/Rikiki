@@ -5,6 +5,9 @@
  */
 package rikiki;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  *
  * @author Márk
@@ -14,6 +17,7 @@ public class TB {
     public boolean IhaveTrump;
     public boolean IhaveColor;
     public boolean IhaveShit;
+    public HashMap<Integer, ArrayList> lackOfCards;
 
     public TB(){
         this.IhaveTrump = false;

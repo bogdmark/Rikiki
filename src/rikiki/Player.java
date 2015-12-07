@@ -343,6 +343,31 @@ public class Player {
         return pickedCard;
     }
     
+    public void updateTB(){
+        
+    }
+    
+    public void recalculate(){
+        
+        ArrayList<Card> toWinCards = this.getToWinCards();
+        if(toWinCards.size() > this.estimate - this.hits){
+            
+        } else if (toWinCards.size() < this.estimate - this.hits){
+            
+        }
+    }
+    
+    public ArrayList<Card> getToWinCards(){
+        
+        ArrayList<Card> toWinCards = new ArrayList();
+        for(Card card: this.cards){
+            if(card.toWin == true){
+                toWinCards.add(card);
+            }
+        }
+        return toWinCards;
+    }
+    
     public Card getCard(int i){
         return this.cards.get(i);
     }
