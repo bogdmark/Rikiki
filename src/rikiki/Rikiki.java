@@ -2,15 +2,12 @@
 package rikiki;
 
 import java.awt.FlowLayout;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 /**
  * @author Márk
@@ -43,8 +40,9 @@ public class Rikiki{
         master.players.add(player1);
         
         // Robotok beállítása a felhasználó választása alapján
-        // Robotok beállítása, mind a 3 típust kipróbáljuk
+        // Robotok beállítása, mind a 4 típust kipróbáljuk
         for(int i = 0; i < Integer.parseInt(this.frame.choice); i++){
+<<<<<<< HEAD
             if( i == 0){
                 this.master.players.add(new Robot("Robot " + i, 0));
             }
@@ -53,6 +51,19 @@ public class Rikiki{
             }
             else{
                 this.master.players.add(new Robot("Robot " + i, -1));
+=======
+            if( i%4 == 0){
+                this.master.players.add(new Robot("Robot " + i, -1));
+            }
+            else if(i%4 == 1){
+                this.master.players.add(new Robot("Robot " + i, 0));
+            }
+            else if (i%4 == 2){
+                this.master.players.add(new Robot("Robot " + i, 1));
+>>>>>>> b1917659127e3e09ccef7f5937b79a479877ec37
+            }
+            else{
+                this.master.players.add(new Robot("Robot " + i, 2));
             }
         }
         
@@ -61,6 +72,7 @@ public class Rikiki{
         for(Player player: this.master.players){
             player.index = i;
             i++;
+            player.nrofplayers = Integer.parseInt(this.frame.choice) + 1;
         }
         
         // Játékosok száma alapján a menetek számának meghatározása
@@ -162,6 +174,7 @@ public class Rikiki{
                                         System.out.println("hívott lap helyett adu");
                                         ok = false;}
                                     else{
+                                        JOptionPane.showMessageDialog(null, "Hibás lapválasztás, van a kezedben hívott lap (adura kattintottál)");
                                         System.out.println("Hibás lapválasztás, van a kezedben hívott lap(adura kattintottál)");
                                     }
                                 }
@@ -176,6 +189,7 @@ public class Rikiki{
                                             trump = true;
                                     }
                                     if(ok && trump){
+                                        JOptionPane.showMessageDialog(null, "Hibás lapválasztás, hívott lapod nincs, de adud van");
                                         System.out.println("Hibás lapválasztás, hívott lap nincs, adu van");
                                         ok = false;
                                         trump = false;}
@@ -184,6 +198,7 @@ public class Rikiki{
                                         System.out.println("hívott lap nincs, adu sincs");
                                         ok = false;}
                                     else{
+                                        JOptionPane.showMessageDialog(null, "Hibás lapválasztás, van a kezedben hívott lap/adu");
                                         System.out.println("Hibás lapválasztás, van a kezedben hívott lap/adu");
                                    }
                                 }                                            

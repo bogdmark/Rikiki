@@ -2,7 +2,6 @@
 package rikiki;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  * Közös ősosztály a játékosnak és a robotoknak
@@ -18,6 +17,7 @@ public class Player {
     public int index;
     public boolean round_starter;
     public TB tb;
+    public int nrofplayers;
     
     public Player(String name){
         this.cards = new ArrayList<>();
@@ -46,7 +46,7 @@ public class Player {
          pickedCard = cards.get(0);
          
          //kell még nyerni?
-         boolean shouldIwin = estimate > hits ? true : false; 
+         boolean shouldIwin = estimate > hits; 
          
         //Ha ő az első a körben, az összes kártyáját használhatja
         //TODO! ennek a fv-ét megírni!
@@ -207,7 +207,7 @@ public class Player {
         if(shouldIwin){
             
             // 1-et, vagy többet?
-            boolean moreTowin = this.estimate - this.hits > 1 ? true : false;
+            boolean moreTowin = this.estimate - this.hits > 1;
             
             //Van olyan lapja, amivel kéne nyernie? 
             boolean toWin = false;
@@ -363,4 +363,9 @@ public class Player {
         return this.round_starter;
     }
     
+    public void setCurrentRankForCardsInHand(){
+        this.cards.stream().forEach((_item) -> {
+            _item.setCurrentRank(0);
+                    });
+    }    
 }
