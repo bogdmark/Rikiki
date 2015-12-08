@@ -39,13 +39,6 @@ public class Robot extends Player{
                     card.toWin = true;
                     this.estimate++;
                 }
-                // Ha nálunk van az adu Ász és az adu Király is, növeljük a becslést
-                if (card.getRoundRank() == 32) 
-                    for (int i = 0; i < cards.size(); i++)
-                        if (card.getRoundRank() == 31){
-                            this.estimate++;
-                            card.toWin = true;
-                        }
                 //Ha nálunk van az adu Ász és az adu Király és az adu Dáma is, növeljük a becslést
                 if (card.getRoundRank() == 32) 
                     for (int i = 0; i < cards.size(); i++)
@@ -92,13 +85,6 @@ public class Robot extends Player{
                     this.estimate++;
                     card.toWin = true;
                 }
-                // Ha nálunk van az adu Ász és az adu Király is, növeljük a becslést
-                if (card.getRoundRank() == 32) 
-                    for (int i = 0; i < cards.size(); i++)
-                        if (card.getRoundRank() == 31){
-                            this.estimate++;
-                            card.toWin = true;
-                        }
                             
                 //Ha nálunk van az adu Ász és az adu Király és az adu Dáma is, növeljük a becslést
                 if (card.getRoundRank() == 32) 
@@ -130,30 +116,14 @@ public class Robot extends Player{
                 if(cards.size() < 6){
                 /*Ha a kapott lapok között szerepel Ász, Király, Dáma, vagy adu Ász 
                     vagy adu Király akkor 1-gyel növeljük a becslést*/
-                if (card.getRoundRank() >= 10 && card.getRoundRank() < 20){
-                    this.estimate++;
-                    card.toWin = true;
-                }
-                if(card.getRoundRank() >= 29){
-                    this.estimate++;
-                    card.toWin = true;
-                }
-//                // Ha nálunk van az adu Ász és az adu Király is, növeljük a becslést
-//                if (card.getRoundRank() == 32) 
-//                    for (int i = 0; i < cards.size(); i++)
-//                        if (card.getRoundRank() == 31){
-//                            this.estimate++;
-//                            card.toWin = true;
-//                        }
-//                //Ha nálunk van az adu Ász és az adu Király és az adu Dáma is, növeljük a becslést
-//                if (card.getRoundRank() == 32) 
-//                    for (int i = 0; i < cards.size(); i++)
-//                        if (card.getRoundRank() == 31)
-//                           for (int j = 0; j < cards.size(); j++)
-//                               if (card.getRoundRank() == 30){
-//                                   this.estimate++;
-//                                   card.toWin = true;
-//                               }
+                    if (card.getRoundRank() >= 10 && card.getRoundRank() < 20){
+                        this.estimate++;
+                        card.toWin = true;
+                    }
+                    if(card.getRoundRank() >= 29){
+                        this.estimate++;
+                        card.toWin = true;
+                    }
                 }
                 if(cards.size() > 5){
                     if (card.getRoundRank() >= 10 && card.getRoundRank() < 20){
@@ -164,16 +134,6 @@ public class Robot extends Player{
                     card.toWin = true;
                     this.estimate++;
                     }
-                    if (card.getRoundRank() == 32) 
-                    for (int i = 0; i < cards.size(); i++)
-                        if (card.getRoundRank() == 31)
-                           for (int j = 0; j < cards.size(); j++)
-                               if (card.getRoundRank() == 30)
-                                   for (int k = 0; k < cards.size(); k++)
-                                       if(card.getRoundRank() == 29){
-                                           this.estimate++;
-                                           card.toWin = true;
-                                        }
                 }
             }
         }
