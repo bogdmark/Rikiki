@@ -335,7 +335,7 @@ public class Rikiki{
                         this.drawplayers.get(this.winner_index).PlyarPic.setVisible(visible);
                         this.drawplayers.get(this.winner_index).ScoreLabel.setVisible(visible);
                         this.drawplayers.get(this.winner_index).hitsLabel.setVisible(visible);
-                        frame.TablePanel.getComponent(this.master.getWinnerCard()).setVisible(visible);
+                        //frame.TablePanel.getComponent(this.master.getWinnerCard()).setVisible(visible);
                     }
                     else{
                         visible = true;
@@ -345,7 +345,7 @@ public class Rikiki{
                         this.drawplayers.get(this.winner_index).PlyarPic.setVisible(visible);
                         this.drawplayers.get(this.winner_index).ScoreLabel.setVisible(visible);
                         this.drawplayers.get(this.winner_index).hitsLabel.setVisible(visible);
-                        frame.TablePanel.getComponent(this.master.getWinnerCard()).setVisible(visible);
+                        //frame.TablePanel.getComponent(this.master.getWinnerCard()).setVisible(visible);
                     }
                 }
                 
