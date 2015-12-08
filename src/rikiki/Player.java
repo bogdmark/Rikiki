@@ -395,7 +395,7 @@ public class Player {
         if(toWinCards.size() < this.cards.size()){
             Card bestNotToWinCard = this.cards.get(0);
             int i = 1;
-            while(!bestNotToWinCard.toWin){
+            while(!bestNotToWinCard.toWin && i < this.cards.size()){
                 if(this.cards.get(i).toWin){
                     bestNotToWinCard = this.cards.get(i);
                 }
