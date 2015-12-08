@@ -31,7 +31,7 @@ public class Robot extends Player{
                 if(cards.size() < 9){ 
                 /*Ha a kapott lapok között szerepel Ász, vagy adu Ász 
                     vagy adu Király akkor 1-gyel növeljük a becslést*/
-                if (card.getRoundRank() == 0 && card.getAllTimeRank() == 12){
+                if (card.getRoundRank() == 12){
                     card.toWin = true;
                     this.estimate++;
                 }
@@ -57,7 +57,7 @@ public class Robot extends Player{
                                }
                 }
                 if(cards.size() > 8 && round_starter){
-                    if (card.getRoundRank() == 0 && (card.getAllTimeRank() >= 10)){
+                    if (card.getRoundRank() >= 10){
                     card.toWin = true;
                     this.estimate++;
                     }
@@ -67,7 +67,7 @@ public class Robot extends Player{
                     }
                 }
                 else if(cards.size() > 8 && !round_starter){
-                    if (card.getRoundRank() == 0 && card.getAllTimeRank() >= 11){
+                    if (card.getRoundRank() >= 11 && card.getRoundRank() < 20){
                         card.toWin = true;
                         this.estimate++;
                     }
@@ -84,7 +84,7 @@ public class Robot extends Player{
                 /*Ha a kapott lapok között szerepel Ász, Király, vagy adu Ász 
                     vagy adu Király akkor 1-gyel növeljük a becslést*/
                 if(cards.size() < 7){
-                if (card.getRoundRank() == 0 && card.getAllTimeRank() >= 11){
+                if (card.getRoundRank() >= 11 && card.getRoundRank() < 20){
                     this.estimate++;
                     card.toWin = true;
                 }
@@ -111,7 +111,7 @@ public class Robot extends Player{
                                }
                 }
                 if(cards.size() > 6){
-                    if (card.getRoundRank() == 0 && card.getAllTimeRank() >= 10){
+                    if (card.getRoundRank() >= 10 && card.getRoundRank() < 20){
                     card.toWin = true;
                     this.estimate++;
                     }
@@ -130,7 +130,7 @@ public class Robot extends Player{
                 if(cards.size() < 6){
                 /*Ha a kapott lapok között szerepel Ász, Király, Dáma, vagy adu Ász 
                     vagy adu Király akkor 1-gyel növeljük a becslést*/
-                if (card.getRoundRank() == 0 && card.getAllTimeRank() >= 10){
+                if (card.getRoundRank() >= 10 && card.getRoundRank() < 20){
                     this.estimate++;
                     card.toWin = true;
                 }
@@ -138,25 +138,25 @@ public class Robot extends Player{
                     this.estimate++;
                     card.toWin = true;
                 }
-                // Ha nálunk van az adu Ász és az adu Király is, növeljük a becslést
-                if (card.getRoundRank() == 32) 
-                    for (int i = 0; i < cards.size(); i++)
-                        if (card.getRoundRank() == 31){
-                            this.estimate++;
-                            card.toWin = true;
-                        }
-                //Ha nálunk van az adu Ász és az adu Király és az adu Dáma is, növeljük a becslést
-                if (card.getRoundRank() == 32) 
-                    for (int i = 0; i < cards.size(); i++)
-                        if (card.getRoundRank() == 31)
-                           for (int j = 0; j < cards.size(); j++)
-                               if (card.getRoundRank() == 30){
-                                   this.estimate++;
-                                   card.toWin = true;
-                               }
+//                // Ha nálunk van az adu Ász és az adu Király is, növeljük a becslést
+//                if (card.getRoundRank() == 32) 
+//                    for (int i = 0; i < cards.size(); i++)
+//                        if (card.getRoundRank() == 31){
+//                            this.estimate++;
+//                            card.toWin = true;
+//                        }
+//                //Ha nálunk van az adu Ász és az adu Király és az adu Dáma is, növeljük a becslést
+//                if (card.getRoundRank() == 32) 
+//                    for (int i = 0; i < cards.size(); i++)
+//                        if (card.getRoundRank() == 31)
+//                           for (int j = 0; j < cards.size(); j++)
+//                               if (card.getRoundRank() == 30){
+//                                   this.estimate++;
+//                                   card.toWin = true;
+//                               }
                 }
                 if(cards.size() > 5){
-                    if (card.getRoundRank() == 0 && card.getAllTimeRank() >= 10){
+                    if (card.getRoundRank() >= 10 && card.getRoundRank() < 20){
                     card.toWin = true;
                     this.estimate++;
                     }
