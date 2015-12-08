@@ -23,6 +23,7 @@ public class TB {
         this.IhaveTrump = false;
         this.IhaveColor = false;
         this.IhaveShit = false;
+        
     }
     
 }
