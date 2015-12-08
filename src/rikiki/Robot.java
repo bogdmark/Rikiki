@@ -113,7 +113,17 @@ public class Robot extends Player{
         }
         if(type == 1){
             for (Card card : cards) {
-                if(cards.size() < 6){
+                if(cards.size() < 4){
+                    if(card.getRoundRank() >= 26){
+                        this.estimate++;
+                        card.toWin = true;
+                    }
+                    if (card.getRoundRank() >= 10 && card.getRoundRank() < 20){
+                        this.estimate++;
+                        card.toWin = true;
+                    }
+                }
+                if(cards.size() == 4 || cards.size() == 5){
                 /*Ha a kapott lapok között szerepel Ász, Király, Dáma, vagy adu Ász 
                     vagy adu Király akkor 1-gyel növeljük a becslést*/
                     if (card.getRoundRank() >= 10 && card.getRoundRank() < 20){
