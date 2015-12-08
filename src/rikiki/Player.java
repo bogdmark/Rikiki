@@ -349,7 +349,6 @@ public class Player {
     
     public void recalculate(){
         
-        boolean noMoreCard = false;
         ArrayList<Card> toWinCards = this.getToWinCards();
         if(toWinCards.size() > this.estimate - this.hits && !toWinCards.isEmpty()){
             System.out.println("csökkenti a toWin kártyákat");
@@ -361,12 +360,10 @@ public class Player {
             }
             this.recalculate();
             
-        } else if (toWinCards.size() < this.estimate - this.hits){
-            System.out.println("növeli a toWin kártyákat");
-            noMoreCard = this.getBestNotToWinCard(toWinCards);
-            if(!noMoreCard){
-                this.recalculate();
-            }
+        } else if (toWinCards.size() < this.estimate - this.hits && toWinCards.size()!= this.cards.size()){
+            System.out.println("növeli a toWin kártyákat, ToWin-ek száma: " + toWinCards.size());
+            this.getBestNotToWinCard(toWinCards);
+            this.recalculate();
         }
     }
     
@@ -392,33 +389,28 @@ public class Player {
         return worstToWinCard;
     }
     
-    public boolean getBestNotToWinCard(ArrayList<Card> toWinCards){
+    public void getBestNotToWinCard(ArrayList<Card> toWinCards){
         
-        if(toWinCards.size() < this.cards.size()&& this.cards.size() <= this.estimate - this.hits){
-            Card bestNotToWinCard = this.cards.get(0);
-            int i = 0;
-            while(!bestNotToWinCard.toWin && i < this.cards.size()){
-                if(this.cards.get(i).toWin){
-                    bestNotToWinCard = this.cards.get(i);
-                }
-                i++;
+        Card bestNotToWinCard = this.cards.get(0);
+        boolean end = false;
+        for(int i = 0; i < this.cards.size() && !end; i++){
+            if(!this.cards.get(i).toWin){
+                bestNotToWinCard = this.cards.get(i);
+                end = true;
             }
-            i = 0;
-            while(i < this.cards.size()){
-                if(!this.cards.get(i).toWin && this.cards.get(i).getRoundRank() > bestNotToWinCard.getRoundRank()){
-                    bestNotToWinCard = this.cards.get(i);
-                }
-                i++;
-            }
-            for(int j = 0; j < this.cards.size(); j++){
-                if(this.cards.get(j).equals(bestNotToWinCard)){
-                    this.cards.get(j).toWin = true;
-                }
-            }
-            return false;
         }
-        else {
-            return true;
+        int i = 0;
+        while(i < this.cards.size()){
+            if(!this.cards.get(i).toWin && this.cards.get(i).getRoundRank() > bestNotToWinCard.getRoundRank()){
+                bestNotToWinCard = this.cards.get(i);
+            }
+            i++;
+        }
+        for(int j = 0; j < this.cards.size(); j++){
+            if(this.cards.get(j).equals(bestNotToWinCard)){
+                System.out.println("Siker");
+                this.cards.get(j).toWin = true;
+            }
         }
     }
     
