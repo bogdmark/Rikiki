@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+
 /**
  * @author Márk
  */
@@ -22,6 +23,7 @@ public class Rikiki{
     boolean player1Turn;
     boolean click;
     int winner_index;
+    boolean visible;
     
     public Rikiki(){
         frame.setVisible(true);
@@ -278,7 +280,7 @@ public class Rikiki{
         }    
     }
     
-    public void game(){
+    public void game() throws InterruptedException{
         //for ciklus -> k=1 - körök számáig
         for(int k = 1; k <= this.master.round_number; k++){
             this.master.shuffleDeck();
@@ -324,6 +326,27 @@ public class Rikiki{
                         this.master.players.get(j).setRoundStarter(false);
                 }
                 
+                for(int l = 0; l < 10; l++){
+                    if (l%2 == 0) {
+                        visible = false;
+                        Thread.sleep(100);
+                        this.drawplayers.get(this.winner_index).PlayerLabel.setVisible(visible);
+                        this.drawplayers.get(this.winner_index).EstimateLabel.setVisible(visible);
+                        this.drawplayers.get(this.winner_index).PlyarPic.setVisible(visible);
+                        this.drawplayers.get(this.winner_index).ScoreLabel.setVisible(visible);
+                        this.drawplayers.get(this.winner_index).hitsLabel.setVisible(visible);
+                    }
+                    else{
+                        visible = true;
+                        Thread.sleep(100);
+                        this.drawplayers.get(this.winner_index).PlayerLabel.setVisible(visible);
+                        this.drawplayers.get(this.winner_index).EstimateLabel.setVisible(visible);
+                        this.drawplayers.get(this.winner_index).PlyarPic.setVisible(visible);
+                        this.drawplayers.get(this.winner_index).ScoreLabel.setVisible(visible);
+                        this.drawplayers.get(this.winner_index).hitsLabel.setVisible(visible);
+                    }
+                }
+                
                 this.drawplayers.get(this.winner_index).hitsLabel.setText(this.master.players.get(this.winner_index).hits.toString());
                 this.master.cardsOnTable.addAll(this.master.cardsInPlay);
                 this.master.cardsInPlay.removeAll(this.master.cardsInPlay);
@@ -352,7 +375,7 @@ public class Rikiki{
     
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         
         Rikiki rikiki = new Rikiki();
         int cntr = 0;
