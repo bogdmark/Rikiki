@@ -114,6 +114,21 @@ public class Master {
         return this.cardsInPlay.get(winner_index).ownerID;
     }
     
+    public int getWinnerCard(){
+        //az asztalon lévő kártyák közül kiválasztja a nyertest, és beazonosítja a hozzá tartozó játékost
+        //majd növeli annak a nyeréseinek számát -> játékosok hits változója
+        Card temp = this.cardsInPlay.get(0);
+        int winner_index = 0;
+        for(int i = 1; i < this.cardsInPlay.size(); i++){
+            if((temp.getType().equals(this.cardsInPlay.get(i).getType()) && this.cardsInPlay.get(i).getAllTimeRank() > temp.getAllTimeRank()) ||
+              (!temp.getType().equals(this.trump) && this.cardsInPlay.get(i).getType().equals(this.trump))){
+                temp = this.cardsInPlay.get(i);
+                winner_index = i;
+            }
+        }
+        return winner_index;
+    }
+    
     public void sum(){
         // round-ok végén összeveti a becsléseket és a nyeréseket, és ezalapján kiszámolja a kapott pontszámot
         for(Player player: this.players){
