@@ -349,6 +349,7 @@ public class Player {
     
     public void recalculate(){
         
+        boolean noMoreCard = false;
         ArrayList<Card> toWinCards = this.getToWinCards();
         if(toWinCards.size() > this.estimate - this.hits && !toWinCards.isEmpty()){
             System.out.println("csökkenti a toWin kártyákat");
@@ -362,9 +363,10 @@ public class Player {
             
         } else if (toWinCards.size() < this.estimate - this.hits){
             System.out.println("növeli a toWin kártyákat");
-            this.getBestNotToWinCard(toWinCards);
-            this.recalculate();
-            
+            noMoreCard = this.getBestNotToWinCard(toWinCards);
+            if(!noMoreCard){
+                this.recalculate();
+            }
         }
     }
     
@@ -390,28 +392,34 @@ public class Player {
         return worstToWinCard;
     }
     
-    public void getBestNotToWinCard(ArrayList<Card> toWinCards){
+    public boolean getBestNotToWinCard(ArrayList<Card> toWinCards){
         
-        if(toWinCards.size() < this.cards.size()){
+        if(toWinCards.size() < this.cards.size()&& this.cards.size() <= this.estimate - this.hits){
             Card bestNotToWinCard = this.cards.get(0);
-            int i = 1;
+            int i = 0;
             while(!bestNotToWinCard.toWin && i < this.cards.size()){
                 if(this.cards.get(i).toWin){
                     bestNotToWinCard = this.cards.get(i);
                 }
                 i++;
             }
-            for(; i < this.cards.size(); i++){
+            i = 0;
+            while(i < this.cards.size()){
                 if(!this.cards.get(i).toWin && this.cards.get(i).getRoundRank() > bestNotToWinCard.getRoundRank()){
                     bestNotToWinCard = this.cards.get(i);
                 }
+                i++;
             }
-            for(Card card: this.cards){
-                if(card.equals(bestNotToWinCard)){
-                    card.toWin = true;
+            for(int j = 0; j < this.cards.size(); j++){
+                if(this.cards.get(j).equals(bestNotToWinCard)){
+                    this.cards.get(j).toWin = true;
                 }
             }
-        } 
+            return false;
+        }
+        else {
+            return true;
+        }
     }
     
     public Card getCard(int i){
