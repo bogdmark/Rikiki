@@ -95,6 +95,18 @@ public class Robot extends Player{
                     }
                 }              
             }
+            if(cards.size() > 5)
+                if(this.estimate == 0)
+                    if(getMaxValue(cards) >= 11){
+                        getMaxCard(cards).toWin = true;
+                        this.estimate++;
+                    }
+            if(cards.size() > 8)
+                if(this.estimate == 0)
+                    if(getMaxValue(cards) >= 8){
+                        getMaxCard(cards).toWin = true;
+                        this.estimate++;
+                    }
         }
         
         if(type == 0){
