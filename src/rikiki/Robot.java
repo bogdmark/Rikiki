@@ -26,7 +26,7 @@ public class Robot extends Player{
     }
    
     @Override
-    public void setEstimate(){
+    public void setEstimate(RikikiJFrame frame){
         this.estimate = 0;
         if(type == -1){ //minimalista becslő beállítása
             for (Card card : cards) {
@@ -50,6 +50,7 @@ public class Robot extends Player{
                                    this.estimate++;
                                    card.toWin = true;
                                }
+                
                 if (card.getRoundRank() == 32) 
                     for (int i = 0; i < cards.size(); i++)
                         if (card.getRoundRank() == 31)
