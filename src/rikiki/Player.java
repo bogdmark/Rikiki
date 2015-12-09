@@ -422,7 +422,7 @@ public class Player {
         this.cards.add(card);
     }
    
-    public void setEstimate(){
+    public void setEstimate(RikikiJFrame frame){
         this.estimate = 0;
     }
 

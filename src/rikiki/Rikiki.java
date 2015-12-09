@@ -26,6 +26,7 @@ public class Rikiki{
     boolean visible;
     
     public Rikiki(){
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         this.halftime = false;
         this.player1Turn = false;
@@ -51,7 +52,7 @@ public class Rikiki{
                 this.master.players.add(new Robot("Robot " + i, 1));
             }
             else if (i%4 == 2){
-                this.master.players.add(new Robot("Robot " + i, -1));
+                this.master.players.add(new Robot("Robot " + i, 0));
             }
             else{
                 this.master.players.add(new Robot("Robot " + i, 1));
@@ -306,7 +307,7 @@ public class Rikiki{
             }
             
             //becslések begyűjtése
-            this.master.setEstimates();
+            this.master.setEstimates(frame);
             
             for(int i = 0; i < this.master.players.size(); i++){
                 this.drawplayers.get(i).EstimateLabel.setText(this.master.players.get(i).estimate.toString());
