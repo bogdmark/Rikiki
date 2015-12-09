@@ -162,7 +162,7 @@ public class Master {
         int i = 1;
         
         for(Player player: this.players){
-             s = s.concat(i + "." + player.name + " (" + player.score + ")<br>");
+             s = s.concat(i + ". " + player.name + " (" + player.score + ")<br>");
              i++;
          }
         
