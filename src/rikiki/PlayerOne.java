@@ -1,6 +1,7 @@
 
 package rikiki;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +18,7 @@ public class PlayerOne extends Player{
     }
     
     @Override
-    public void setEstimate(RikikiJFrame frame){
+    public void setEstimate(RikikiJFrame frame, int player_size){
         boolean ok = false;
         while(!ok){
             try{

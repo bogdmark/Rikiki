@@ -91,10 +91,10 @@ public class Master {
             }
         }
     }
-    public void setEstimates(RikikiJFrame frame){
+    public void setEstimates(RikikiJFrame frame, int player_size){
         //for ciklussal begyűjteni a játkosoktól
         for(int i = 0; i < this.players.size(); i++){
-            players.get(i).setEstimate(frame);
+            players.get(i).setEstimate(frame, player_size);
         }
     }
     

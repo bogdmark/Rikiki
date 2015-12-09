@@ -46,16 +46,16 @@ public class Rikiki{
         // Robotok beállítása, mind a 4 típust kipróbáljuk
         for(int i = 0; i < Integer.parseInt(this.frame.choice); i++){
             if( i%4 == 0){
-                this.master.players.add(new Robot("Robot " + i, 0));
+                this.master.players.add(new Robot("Robot real" + i, 0));
             }
             else if(i%4 == 1){
-                this.master.players.add(new Robot("Robot " + i, 1));
+                this.master.players.add(new Robot("Robot opt" + i, 1));
             }
             else if (i%4 == 2){
-                this.master.players.add(new Robot("Robot " + i, 0));
+                this.master.players.add(new Robot("Robot real" + i, 0));
             }
             else{
-                this.master.players.add(new Robot("Robot " + i, 1));
+                this.master.players.add(new Robot("Robot min" + i, -1));
             }
             }
         
@@ -307,7 +307,7 @@ public class Rikiki{
             }
             
             //becslések begyűjtése
-            this.master.setEstimates(frame);
+            this.master.setEstimates(frame,this.master.players.size());
             
             for(int i = 0; i < this.master.players.size(); i++){
                 this.drawplayers.get(i).EstimateLabel.setText(this.master.players.get(i).estimate.toString());

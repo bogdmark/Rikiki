@@ -26,7 +26,7 @@ public class Robot extends Player{
     }
    
     @Override
-    public void setEstimate(RikikiJFrame frame){
+    public void setEstimate(RikikiJFrame frame, int player_size){
         this.estimate = 0;
         if(type == -1){ //minimalista becslő beállítása
             for (Card card : cards) {
@@ -96,18 +96,20 @@ public class Robot extends Player{
                     }
                 }              
             }
-            if(cards.size() > 5)
-                if(this.estimate == 0)
-                    if(getMaxValue(cards) >= 11){
-                        getMaxCard(cards).toWin = true;
-                        this.estimate++;
-                    }
-            if(cards.size() > 8)
-                if(this.estimate == 0)
-                    if(getMaxValue(cards) >= 8){
-                        getMaxCard(cards).toWin = true;
-                        this.estimate++;
-                    }
+            if(player_size < 4){
+                if(cards.size() > 5)
+                    if(this.estimate == 0)
+                        if(getMaxValue(cards) >= 11){
+                            getMaxCard(cards).toWin = true;
+                            this.estimate++;
+                        }
+                if(cards.size() > 8)
+                    if(this.estimate == 0)
+                        if(getMaxValue(cards) >= 8){
+                            getMaxCard(cards).toWin = true;
+                            this.estimate++;
+                        }
+            }
         }
         
         if(type == 0){
@@ -136,31 +138,33 @@ public class Robot extends Player{
                 }
                                    
             }
-            if(cards.size() < 4)
-                if(this.estimate == 0)
-                    if(getMaxValue(cards) >= 6){
-                        getMaxCard(cards).toWin = true;
-                        this.estimate++;
-                    }
-            if(cards.size() > 3 && cards.size() < 7)
-                if(this.estimate == 0)
-                    if(getMaxValue(cards) >= 7){
-                        getMaxCard(cards).toWin = true;
-                        this.estimate++;
-                    }
-            if(cards.size() == 7 || cards.size() == 8)
-                if(this.estimate == 0)
-                    if(getMaxValue(cards) >= 8){
-                        getMaxCard(cards).toWin = true;
-                        this.estimate++;
-                    }
-            if(cards.size() > 8)
-                if(this.estimate == 0)
-                    if(getMaxValue(cards) >= 9){
-                        getMaxCard(cards).toWin = true;
-                        this.estimate++;
-                    }
-            //túl extrém becslés csökkentése
+            if(player_size < 5){
+                if(cards.size() < 4)
+                    if(this.estimate == 0)
+                        if(getMaxValue(cards) >= 6){
+                            getMaxCard(cards).toWin = true;
+                            this.estimate++;
+                        }
+                if(cards.size() > 3 && cards.size() < 7)
+                    if(this.estimate == 0)
+                        if(getMaxValue(cards) >= 7){
+                            getMaxCard(cards).toWin = true;
+                            this.estimate++;
+                        }
+                if(cards.size() == 7 || cards.size() == 8)
+                    if(this.estimate == 0)
+                        if(getMaxValue(cards) >= 8){
+                            getMaxCard(cards).toWin = true;
+                            this.estimate++;
+                        }
+                if(cards.size() > 8)
+                    if(this.estimate == 0)
+                        if(getMaxValue(cards) >= 9){
+                            getMaxCard(cards).toWin = true;
+                            this.estimate++;
+                        }
+            }
+                //túl extrém becslés csökkentése
             if(this.estimate > cards.size()/2) this.estimate = cards.size()/2;
         }
         if(type == 1){
@@ -198,24 +202,26 @@ public class Robot extends Player{
                     }
                 }                
             }
-            if(cards.size() < 4)
-                if(this.estimate == 0)
-                    if(getMaxValue(cards) >= 6){
-                        getMaxCard(cards).toWin = true;
-                        this.estimate++;
-                    }
-            if(cards.size() == 4 || cards.size() == 5)
-                if(this.estimate == 0)
-                    if(getMaxValue(cards) >= 8){
-                        getMaxCard(cards).toWin = true;
-                        this.estimate++;
-                    }
-            if(cards.size() > 5)
-                if(this.estimate == 0)
-                    if(getMaxValue(cards) >= 6){
-                        getMaxCard(cards).toWin = true;
-                        this.estimate++;
-                    }
+            if(player_size < 5){
+                if(cards.size() < 4)
+                    if(this.estimate == 0)
+                        if(getMaxValue(cards) >= 6){
+                            getMaxCard(cards).toWin = true;
+                            this.estimate++;
+                        }
+                if(cards.size() == 4 || cards.size() == 5)
+                    if(this.estimate == 0)
+                        if(getMaxValue(cards) >= 8){
+                            getMaxCard(cards).toWin = true;
+                            this.estimate++;
+                        }
+                if(cards.size() > 5)
+                    if(this.estimate == 0)
+                        if(getMaxValue(cards) >= 6){
+                            getMaxCard(cards).toWin = true;
+                            this.estimate++;
+                        }
+            }
         }
         
         if(type == 2){
