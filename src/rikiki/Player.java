@@ -176,13 +176,13 @@ public class Player {
         Card pickedCard = playableCards.get(0);
         if(shouldIwin){
             for(Card card: playableCards){
-                if(card.getRoundRank() > pickedCard.getRoundRank()){
+                if(card.getRoundRank() < pickedCard.getRoundRank()){
                     pickedCard = card;
                 }
             }
         } else{
             for(Card card: playableCards){
-                if(card.getRoundRank() < pickedCard.getRoundRank()){
+                if(card.getRoundRank() > pickedCard.getRoundRank()){
                     pickedCard = card;
                 }
             }
