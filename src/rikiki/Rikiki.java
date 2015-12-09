@@ -54,7 +54,7 @@ public class Rikiki{
                 this.master.players.add(new Robot("Robot " + i, -1));
             }
             else{
-                this.master.players.add(new Robot("Robot " + i, 2));
+                this.master.players.add(new Robot("Robot " + i, 1));
             }
             }
         

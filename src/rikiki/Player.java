@@ -438,5 +438,27 @@ public class Player {
         this.cards.stream().forEach((_item) -> {
             _item.setCurrentRank(0);
                     });
-    }    
+    }
+    
+    public int getMaxValue(ArrayList<Card> cards){
+        int max = Integer.MIN_VALUE;
+        for(int i=0; i<cards.size(); i++){
+            if(cards.get(i).getRoundRank() > max){
+                max = cards.get(i).getRoundRank();
+            }
+        }
+        return max;
+    }
+    
+    public Card getMaxCard(ArrayList<Card> cards){
+        int maxRR = Integer.MIN_VALUE;
+        Card maxC = cards.get(0);
+        for(int i=0; i<cards.size(); i++){
+            if(cards.get(i).getRoundRank() > maxRR){
+                maxRR = cards.get(i).getRoundRank();
+                maxC = cards.get(i);
+            }
+        }
+        return maxC;
+    }
 }
