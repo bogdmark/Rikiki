@@ -65,62 +65,63 @@ public class Robot extends Player{
                     //Ha nálunk van az adu Ász és az adu Király és az adu Dáma is, növeljük a becslést
                     if (card.getRoundRank() == 32) 
                         for (int i = 0; i < cards.size(); i++)
-                            if (card.getRoundRank() == 31)
+                            if (cards.get(i).getRoundRank() == 31)
                                for (int j = 0; j < cards.size(); j++)
-                                   if (card.getRoundRank() == 30){
+                                   if (cards.get(j).getRoundRank() == 30){
                                        this.estimate++;
-                                       card.toWin = true;
+                                       cards.get(j).toWin = true;
                                    }
 
                     if (card.getRoundRank() == 32) 
                         for (int i = 0; i < cards.size(); i++)
-                            if (card.getRoundRank() == 31)
+                            if (cards.get(i).getRoundRank() == 31)
                                for (int j = 0; j < cards.size(); j++)
-                                   if (card.getRoundRank() == 30) 
+                                   if (cards.get(j).getRoundRank() == 30) 
                                        for (int k = 0; k < cards.size(); k++)
-                                           if (card.getRoundRank() == 29){
+                                           if (cards.get(k).getRoundRank() == 29){
                                                this.estimate++;
-                                               card.toWin = true;
+                                               cards.get(k).toWin = true;
                                                }
 
                     if (card.getRoundRank() == 32) 
                         for (int i = 0; i < cards.size(); i++)
-                            if (card.getRoundRank() == 31)
+                            if (cards.get(i).getRoundRank() == 31)
                                for (int j = 0; j < cards.size(); j++)
-                                   if (card.getRoundRank() == 30) 
+                                   if (cards.get(j).getRoundRank() == 30) 
                                        for (int k = 0; k < cards.size(); k++)
-                                           if (card.getRoundRank() == 29)
+                                           if (cards.get(k).getRoundRank() == 29)
                                                for (int l = 0; l < cards.size(); l++)
-                                                   if (card.getRoundRank() == 28){
+                                                   if (cards.get(l).getRoundRank() == 28){
                                                        this.estimate++;
-                                                       card.toWin = true;
+                                                       cards.get(l).toWin = true;
                                                        }
                 }
-                    if(cards.size() < 5 && round_starter && !card.toWin){
-                        if (card.getRoundRank() >= 10 && card.getRoundRank() < 20){
-                        card.toWin = true;
-                        this.estimate++;
-                        }
-                        if (card.getRoundRank() >= 28){
-                        card.toWin = true;
-                        this.estimate++;
-                        }
-                    }
-                    else if(cards.size() < 7 && !round_starter && !card.toWin){
-                        if (card.getRoundRank() >= 11 && card.getRoundRank() < 20){
-                            card.toWin = true;
-                            this.estimate++;
-                        }
-                        if (card.getRoundRank() >= 29){
-                            card.toWin = true;
-                            this.estimate++;
-                        }
-                }   
                 else {
-                    if (card.getRoundRank() >= 10 && card.getRoundRank() < 20 || card.getRoundRank() >= 30){
+                    if ((card.getRoundRank() >= 10 && card.getRoundRank() < 20 || card.getRoundRank() >= 30) && !card.toWin){
                     card.toWin = true;
                     this.estimate++;
                 }
+                if(cards.size() < 5 && round_starter && !card.toWin){
+                    if (card.getRoundRank() >= 10 && card.getRoundRank() < 20){
+                    card.toWin = true;
+                    this.estimate++;
+                    }
+                    if (card.getRoundRank() >= 28){
+                    card.toWin = true;
+                    this.estimate++;
+                    }
+                }
+                else if(cards.size() < 7 && !round_starter && !card.toWin){
+                    if (card.getRoundRank() >= 11 && card.getRoundRank() < 20){
+                        card.toWin = true;
+                        this.estimate++;
+                    }
+                    if (card.getRoundRank() >= 29){
+                        card.toWin = true;
+                        this.estimate++;
+                    }
+                }   
+                
             }
             
                 
