@@ -344,7 +344,7 @@ public class Player {
             //Kikérő lap keresése
             if(pickedCard.toWin && !pickedCard.sureWinner){
                 for(Card card: playableCards){
-                    if((card.getType().equals(pickedCard.getType()) || card.getType().equals(trump))&& !card.toWin){
+                    if((card.getType().equals(pickedCard.getType()) || card.getType().equals(trump))&& !card.toWin  && card.getAllTimeRank()<=7){
                         pickedCard = card;
                     }
                 }
