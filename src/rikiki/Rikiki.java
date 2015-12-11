@@ -59,10 +59,10 @@ public class Rikiki{
                 this.master.players.add(new Robot("Robot " + i, 1));
             }
             else if (i%4 == 2){
-                this.master.players.add(new Robot("Robot " + i, 0));
+                this.master.players.add(new Robot("Robot " + i, -1));
             }
             else{
-                this.master.players.add(new Robot("Robot " + i, -1));
+                this.master.players.add(new Robot("Robot " + i, 1));
             }
             }
         
