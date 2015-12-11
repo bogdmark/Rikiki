@@ -1,6 +1,7 @@
 
 package rikiki;
 
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,6 +12,9 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.Spring;
+import javax.swing.SpringLayout;
+import javax.swing.SpringLayout.Constraints;
 
 
 /**
@@ -96,7 +100,8 @@ public class Rikiki{
     */
     public void drawBase(){
         
-        frame.PlayerPanel.setLayout(new GridBagLayout());
+        frame.PlayerPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
+        frame.PlayerPanel2.setLayout(new FlowLayout(FlowLayout.LEADING));
         
         frame.ScorePanel.setLayout(new BoxLayout(frame.ScorePanel, BoxLayout.PAGE_AXIS));
         frame.TablePanel.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -142,12 +147,9 @@ public class Rikiki{
         frame.TrumpPic.setIcon(new ImageIcon(master.trump + "_trump.jpg"));
         frame.RoundNumber.setText(this.master.round_index-1 + "/" + this.master.round_number);
         frame.PlayerPanel.removeAll();
+        frame.PlayerPanel2.removeAll();
         frame.revalidate();
         frame.repaint();
-        GridBagConstraints c1 = new GridBagConstraints();
-        c1.fill = GridBagConstraints.WEST;
-        GridBagConstraints c2 = new GridBagConstraints();
-        c2.fill = GridBagConstraints.WEST;
         
         for(int c = 0; c < master.players.get(0).cards.size(); c++){
             DrawCard card = new DrawCard();
@@ -242,23 +244,19 @@ public class Rikiki{
                 }
             };
             card.addMouseListener(mouselistener);
-            c1.gridx = c;
-            c1.anchor = GridBagConstraints.WEST;
-            c1.fill = GridBagConstraints.WEST;
+            /*c1.gridx = c;
+            c1.anchor = GridBagConstraints.FIRST_LINE_START;
             c1.gridy = 0;
             c1.insets = new Insets(4,4,0,0);
             c2.gridx = c-9;
             c2.insets = new Insets(4,4,0,0);
             c2.gridy = 1;
-            
+            */
             if(c < 9)
-                frame.PlayerPanel.add(card, c1);
+                frame.PlayerPanel.add(card);
             else
-                frame.PlayerPanel.add(card, c2);
+                frame.PlayerPanel2.add(card);
         }
-        
-        frame.pack();
-        frame.setLocationRelativeTo(null);
     }
     
     /*
