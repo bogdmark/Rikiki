@@ -1,7 +1,6 @@
 
 package rikiki;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -9,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Robot extends Player{
     
-    private int type; //-1 minimalista, 0 realista, 1 optimista, 2 abszolút nulla
+    private int type; //-1 minimalista, 0 realista, 1 optimista
     
     public Robot(String name, int type){
         this.name = name;
@@ -137,8 +136,6 @@ public class Robot extends Player{
         
         if(type == 0){
             for (Card card : cards) { 
-                /*Ha a kapott lapok között szerepel Ász, Király, vagy adu Ász 
-                    vagy adu Király akkor 1-gyel növeljük a becslést*/
                 if(cards.size() > 6){
                     if (card.getRoundRank() >= 11 && card.getRoundRank() < 20){
                         this.estimate++;
@@ -212,10 +209,6 @@ public class Robot extends Player{
             }            
         }
         this.correctEstimate();
-        
-//        System.out.println(cards.size());
-//        for(Card card_writeout : cards)
-//            System.out.println(type + " tipusu robot kártya: " + card_writeout.getType() + " " + card_writeout.getValue() + " Becsült? " + card_writeout.toWin);
     }
 }
     

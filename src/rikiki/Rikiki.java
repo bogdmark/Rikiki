@@ -50,7 +50,6 @@ public class Rikiki{
         master.players.add(player1);
         
         // Robotok beállítása a felhasználó választása alapján
-        // Robotok beállítása, mind a 4 típust kipróbáljuk
         for(int i = 0; i < Integer.parseInt(this.frame.choice); i++){
             if( i%5 == 0){
                 this.master.players.add(new Robot("Robot " + i, 0));
@@ -247,14 +246,7 @@ public class Rikiki{
                 }
             };
             card.addMouseListener(mouselistener);
-            /*c1.gridx = c;
-            c1.anchor = GridBagConstraints.FIRST_LINE_START;
-            c1.gridy = 0;
-            c1.insets = new Insets(4,4,0,0);
-            c2.gridx = c-9;
-            c2.insets = new Insets(4,4,0,0);
-            c2.gridy = 1;
-            */
+
             if(c < 9)
                 frame.PlayerPanel.add(card);
             else

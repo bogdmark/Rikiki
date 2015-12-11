@@ -1,7 +1,6 @@
 
 package rikiki;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
