@@ -27,6 +27,7 @@ public class Robot extends Player{
    
     @Override
     public void setEstimate(RikikiJFrame frame, int player_size){
+        
         this.estimate = 0;
         if(type == -1){ //minimalista becslő beállítása
             for (Card card : cards) {
@@ -227,6 +228,9 @@ public class Robot extends Player{
         if(type == 2){
             this.estimate = 0;
         }
+        
+        for(Card card_writeout : cards)
+            System.out.println(card_writeout.ownerID + ". robot kártya: " + card_writeout.getRoundRank() + " Becsült? " + card_writeout.toWin);
     }
 }
     
