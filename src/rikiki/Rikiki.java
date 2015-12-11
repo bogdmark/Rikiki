@@ -2,6 +2,10 @@
 package rikiki;
 
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -81,7 +85,8 @@ public class Rikiki{
     */
     public void drawBase(){
         
-        frame.PlayerPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
+        frame.PlayerPanel.setLayout(new GridBagLayout());
+        
         frame.ScorePanel.setLayout(new BoxLayout(frame.ScorePanel, BoxLayout.PAGE_AXIS));
         frame.TablePanel.setLayout(new FlowLayout(FlowLayout.LEADING));
         
@@ -128,6 +133,10 @@ public class Rikiki{
         frame.PlayerPanel.removeAll();
         frame.revalidate();
         frame.repaint();
+        GridBagConstraints c1 = new GridBagConstraints();
+        c1.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints c2 = new GridBagConstraints();
+        c2.fill = GridBagConstraints.HORIZONTAL;
         
         for(int c = 0; c < master.players.get(0).cards.size(); c++){
             DrawCard card = new DrawCard();
@@ -222,8 +231,18 @@ public class Rikiki{
                 }
             };
             card.addMouseListener(mouselistener);
-            frame.PlayerPanel.add(card);
+            c1.gridx = c;
+            c1.insets = new Insets(4,4,1,1);
+            c2.gridx = c-9;
+            c2.insets = new Insets(4,4,1,1);
+            c2.gridy = 1;
+            if(c < 9)
+                frame.PlayerPanel.add(card, c1);
+            else
+                frame.PlayerPanel.add(card, c2);
         }
+        frame.pack();
+        frame.setLocationRelativeTo(null);
     }
     
     /*
