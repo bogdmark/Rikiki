@@ -345,12 +345,13 @@ public class Rikiki{
                 this.drawplayers.get(i).EstimateLabel.setText(this.master.players.get(i).estimate.toString());
             }
             
+            for(Player player: this.master.players){
+                    player.tb.clearTB();
+            }
+            
             //for ciklussal végigmegyünk a meneteken
             for(int i = 1; i<=this.master.round_index-(this.master.backward_index); i++){
-               
-                for(Player player: this.master.players){
-                    player.tb.clearTB();
-                }
+
                 this.round(i);
                 this.winner_index = this.master.getWinner();
                 
