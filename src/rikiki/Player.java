@@ -335,23 +335,86 @@ public class Player {
         } else {
             //TODO!! na ezt lehetne még hangolni a TB alapján
             for(Card card: playableCards){
-                if(card.getRoundRank() > pickedCard.getRoundRank()){
+                if(card.sureWinner){
+                    if(pickedCard.sureWinner && pickedCard.getRoundRank() > card.getRoundRank()){
+                        
+                    } else {
+                        pickedCard = card;
+                    }
+                } else if(card.getRoundRank() > pickedCard.getRoundRank()){
                     pickedCard = card;
+                }
+            }
+            //Kikérő lap keresése  --> Ez nem mindig fog jó döntést hozni...
+            if(pickedCard.toWin && !pickedCard.sureWinner){
+                for(Card card: playableCards){
+                    if(card.getType().equals(pickedCard.getType()) && !card.toWin){
+                        pickedCard = card;
+                    }
                 }
             }
         }
         return pickedCard;
     }
     
-    public void updateTB(){
+    public void updateTB(ArrayList<Card> cardsInPlay, ArrayList<Player> players, String trump){
         
+        //nincs kért színe
+        if(!cardsInPlay.get(cardsInPlay.size()-1).getType().equals(cardsInPlay.get(0).getType())){
+            for(Player player: players){
+                if(player.index != this.index){
+                    player.tb.setNews(player.index, cardsInPlay.get(cardsInPlay.size()-1).getType());
+                }
+            }
+        }
+        
+        //nincs aduja sem
+        if(!cardsInPlay.get(cardsInPlay.size()-1).getType().equals(cardsInPlay.get(0).getType()) && !cardsInPlay.get(cardsInPlay.size()-1).getType().equals(trump)){
+            for(Player player: players){
+                if(player.index != this.index){
+                    player.tb.setNews(player.index, trump);
+                }
+            }
+        }
     }
+    
+    /*
+    * Megkeresi azokat a lapokat, amelyek biztosan nyernek kezdőlapként
+    */
+    public void setSureWinners(ArrayList<Card> cardsInPlay, ArrayList<Card> cardsOnTable, String trump){
+        
+        ArrayList<Card> All = new ArrayList<>();
+        for(Card card: cardsInPlay){
+            All.add(card);
+        }
+        for(Card card: cardsOnTable){
+            All.add(card);
+        }
+        
+        //következtetések
+        for(Card card: this.cards){
+
+            int cntr = 0;
+            for(Card all_i : All){
+                if(all_i.getType().equals(card.getType()) && all_i.getAllTimeRank() > card.getAllTimeRank()){
+                    cntr++;
+                }
+            }
+            boolean best = cntr >= 12 - card.getAllTimeRank();
+            boolean lack = this.tb.checkLackOfCards(card.getType());
+            boolean lackOfTrump = this.tb.checkLackOfCards(trump);
+            
+            if((lack & lackOfTrump) || (best & lackOfTrump)){
+                card.sureWinner = true;
+            }
+        }
+    }
+        
     
     public void recalculate(){
         
         ArrayList<Card> toWinCards = this.getToWinCards();
         if(toWinCards.size() > this.estimate - this.hits && !toWinCards.isEmpty()){
-            System.out.println("csökkenti a toWin kártyákat");
             Card worstToWinCard = this.getWorstToWinCard(toWinCards);
             for(Card card: this.cards){
                 if(card.equals(worstToWinCard)){
@@ -361,7 +424,6 @@ public class Player {
             this.recalculate();
             
         } else if (toWinCards.size() < this.estimate - this.hits && toWinCards.size()!= this.cards.size()){
-            System.out.println("növeli a toWin kártyákat, ToWin-ek száma: " + toWinCards.size());
             this.getBestNotToWinCard(toWinCards);
             this.recalculate();
         }
@@ -461,4 +523,5 @@ public class Player {
         }
         return maxC;
     }
+    
 }

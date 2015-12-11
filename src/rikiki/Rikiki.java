@@ -72,6 +72,18 @@ public class Rikiki{
             player.nrofplayers = Integer.parseInt(this.frame.choice) + 1;
         }
         
+        String[] types = {"spades", "hearts", "clubs", "diamonds"};
+        
+        for(Player player: this.master.players){
+            for(int j = 0; i < this.master.players.size(); i++){
+                if(j != player.index){
+                    for(int k = 0; k < types.length; k++){
+                        player.tb.lackOfCards.add(new TBauxiliary(j, types[k]));
+                    }
+                }
+            }
+        }
+        
         // Játékosok száma alapján a menetek számának meghatározása
         master.round_number = (52/this.master.players.size())*2-2;
         
@@ -271,14 +283,15 @@ public class Rikiki{
                 frame.revalidate();
                 frame.repaint();
                 this.player1Turn = true; 
-                while(!this.click && !Thread.interrupted()){ }               
+                while(!this.click && !Thread.interrupted()){ }
+                player.updateTB(this.master.cardsInPlay, this.master.players, this.master.trump);
             }
             else {
-                player.updateTB();
+                player.setSureWinners(this.master.cardsInPlay, this.master.cardsOnTable, this.master.trump);
                 player.recalculate();
                 Card c = player.pick(this.master.cardsInPlay, this.master.trump, players_cntr);
                 this.master.cardsInPlay.add(c);
-            
+                player.updateTB(this.master.cardsInPlay, this.master.players, this.master.trump);
                  //kirajzolás
                 DrawCard card2 = new DrawCard();
                 card2.TypeLabel.setIcon(new ImageIcon(c.getType() + ".jpg"));
@@ -335,6 +348,9 @@ public class Rikiki{
             //for ciklussal végigmegyünk a meneteken
             for(int i = 1; i<=this.master.round_index-(this.master.backward_index); i++){
                
+                for(Player player: this.master.players){
+                    player.tb.clearTB();
+                }
                 this.round(i);
                 this.winner_index = this.master.getWinner();
                 

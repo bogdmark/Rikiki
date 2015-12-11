@@ -14,6 +14,7 @@ public class Card {
     private double currentRank; // aktuális érték
     public int ownerID;
     public boolean toWin;
+    public boolean sureWinner;
     
     public Card(String type, String value, int allTimeRank){
         this.type = type;
@@ -23,6 +24,7 @@ public class Card {
         this.toWin = false;
         this.roundRank = allTimeRank;
         this.currentRank = allTimeRank;
+        this.sureWinner = false; // kezdő lapként biztos nyerő
     }
     
     public String getType(){
