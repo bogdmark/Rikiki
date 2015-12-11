@@ -213,9 +213,9 @@ public class Robot extends Player{
         }
         this.correctEstimate();
         
-        System.out.println(cards.size());
-        for(Card card_writeout : cards)
-            System.out.println(type + " tipusu robot kártya: " + card_writeout.getType() + " " + card_writeout.getValue() + " Becsült? " + card_writeout.toWin);
+//        System.out.println(cards.size());
+//        for(Card card_writeout : cards)
+//            System.out.println(type + " tipusu robot kártya: " + card_writeout.getType() + " " + card_writeout.getValue() + " Becsült? " + card_writeout.toWin);
     }
 }
     
