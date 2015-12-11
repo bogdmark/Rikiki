@@ -400,6 +400,11 @@ public class Player {
                     cntr++;
                 }
             }
+            for(Card all_i : this.cards){
+                if(all_i.getType().equals(card.getType()) && all_i.getAllTimeRank() > card.getAllTimeRank()){
+                    cntr++;
+                }
+            }
             boolean best = cntr >= 12 - card.getAllTimeRank();
             boolean lack = this.tb.checkLackOfCards(card.getType());
             boolean lackOfTrump = this.tb.checkLackOfCards(trump);
