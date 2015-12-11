@@ -4,7 +4,6 @@ package rikiki;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -146,9 +145,9 @@ public class Rikiki{
         frame.revalidate();
         frame.repaint();
         GridBagConstraints c1 = new GridBagConstraints();
-        c1.fill = GridBagConstraints.HORIZONTAL;
+        c1.fill = GridBagConstraints.WEST;
         GridBagConstraints c2 = new GridBagConstraints();
-        c2.fill = GridBagConstraints.HORIZONTAL;
+        c2.fill = GridBagConstraints.WEST;
         
         for(int c = 0; c < master.players.get(0).cards.size(); c++){
             DrawCard card = new DrawCard();
@@ -244,15 +243,20 @@ public class Rikiki{
             };
             card.addMouseListener(mouselistener);
             c1.gridx = c;
-            c1.insets = new Insets(4,4,1,1);
+            c1.anchor = GridBagConstraints.WEST;
+            c1.fill = GridBagConstraints.WEST;
+            c1.gridy = 0;
+            c1.insets = new Insets(4,4,0,0);
             c2.gridx = c-9;
-            c2.insets = new Insets(4,4,1,1);
+            c2.insets = new Insets(4,4,0,0);
             c2.gridy = 1;
+            
             if(c < 9)
                 frame.PlayerPanel.add(card, c1);
             else
                 frame.PlayerPanel.add(card, c2);
         }
+        
         frame.pack();
         frame.setLocationRelativeTo(null);
     }
