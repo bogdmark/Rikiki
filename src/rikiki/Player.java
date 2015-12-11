@@ -49,7 +49,6 @@ public class Player {
          boolean shouldIwin = estimate > hits; 
          
         //Ha ő az első a körben, az összes kártyáját használhatja
-        //TODO! ennek a fv-ét megírni!
          if(cardsInPlay.isEmpty()){
              playableCards = this.cards;
              pickedCard = this.firstToPick(playableCards, shouldIwin, trump);
@@ -272,8 +271,6 @@ public class Player {
                 pickedCard = this.getOptimalCard(playableCards, true);
             }
         } else {
-            //TODO!! finomítani!, Ezt a laza döntést még később megbánhatja!!
-            // Függenie kéne attól, hogy nyerésre szánt lapjainknak mennyi az esélyük...vagy nem, lehet, hogy így is jó!
             pickedCard = this.getBestOfLooserCards(looserCards);
         }
         
@@ -333,7 +330,6 @@ public class Player {
                 }
             }
         } else {
-            //TODO!! na ezt lehetne még hangolni a TB alapján
             for(Card card: playableCards){
                 if(card.sureWinner){
                     if(pickedCard.sureWinner && pickedCard.getRoundRank() > card.getRoundRank()){
@@ -345,7 +341,7 @@ public class Player {
                     pickedCard = card;
                 }
             }
-            //Kikérő lap keresése  --> Ez nem mindig fog jó döntést hozni...
+            //Kikérő lap keresése
             if(pickedCard.toWin && !pickedCard.sureWinner){
                 for(Card card: playableCards){
                     if((card.getType().equals(pickedCard.getType()) || card.getType().equals(trump))&& !card.toWin){
@@ -367,7 +363,6 @@ public class Player {
                 }
             }
         }
-        
         //nincs aduja sem
         if(!cardsInPlay.get(cardsInPlay.size()-1).getType().equals(cardsInPlay.get(0).getType()) && !cardsInPlay.get(cardsInPlay.size()-1).getType().equals(trump)){
             for(Player player: players){
