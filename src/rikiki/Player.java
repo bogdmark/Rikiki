@@ -52,7 +52,7 @@ public class Player {
         //TODO! ennek a fv-ét megírni!
          if(cardsInPlay.isEmpty()){
              playableCards = this.cards;
-             pickedCard = this.firstToPick(playableCards, shouldIwin);
+             pickedCard = this.firstToPick(playableCards, shouldIwin, trump);
          }
          //Ha nem ő az első a körben, csak a megengedett lapokat használhatja
          else{
@@ -322,7 +322,7 @@ public class Player {
         return pickedCard;
     }
     
-    public Card firstToPick(ArrayList<Card> playableCards, boolean shouldIwin){
+    public Card firstToPick(ArrayList<Card> playableCards, boolean shouldIwin, String trump){
         
         Card pickedCard = playableCards.get(0);
         
@@ -348,7 +348,7 @@ public class Player {
             //Kikérő lap keresése  --> Ez nem mindig fog jó döntést hozni...
             if(pickedCard.toWin && !pickedCard.sureWinner){
                 for(Card card: playableCards){
-                    if(card.getType().equals(pickedCard.getType()) && !card.toWin){
+                    if((card.getType().equals(pickedCard.getType()) || card.getType().equals(trump))&& !card.toWin){
                         pickedCard = card;
                     }
                 }
