@@ -524,4 +524,36 @@ public class Player {
         return maxC;
     }
     
+    public void sort(){
+        for(Card card: this.cards){
+            switch(card.getType().charAt(0)){
+                case 's': 
+                    card.setCurrentRank(100);
+                    break;
+                case 'h': 
+                    card.setCurrentRank(200);
+                    break;
+                case 'c': 
+                    card.setCurrentRank(300);
+                    break;
+                case 'd': 
+                    card.setCurrentRank(400);
+                    break;
+                default: break;
+            }
+        }
+        
+        for(int i = 0; i < this.cards.size()-1; i++){
+            for(int j = 1; j < this.cards.size()-i; j++){
+                if(this.cards.get(j-1).getCurrentRank() > this.cards.get(j).getCurrentRank()){
+                    Card temp = this.cards.get(j-1);
+                    this.cards.set(j-1, this.cards.get(j));
+                    this.cards.set(j, temp);
+                    //this.cards.get(j-1) = this.cards.get(j);
+                    //this.cards.get(j) = temp;
+                }
+            }
+        }
+    }
+    
 }

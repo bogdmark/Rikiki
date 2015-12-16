@@ -327,7 +327,7 @@ public class Rikiki{
             
             //round változóba belerakja, hogy hány kör lesz, ez alapján a kártyák kiosztás
             this.master.dealCards();
-            
+            this.master.players.get(0).sort();
             //kirajzol
             this.drawRoundBegin();
             
